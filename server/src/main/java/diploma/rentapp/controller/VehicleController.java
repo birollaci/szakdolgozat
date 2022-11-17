@@ -21,46 +21,46 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RestController
-@RequestMapping(path = "/product")
+@RequestMapping(path = "/vehicle")
 @PreAuthorize("isAuthenticated()")
 public class VehicleController {
     Logger logger = LoggerFactory.getLogger(VehicleController.class);
     
-    private final VehicleService productService;
+    private final VehicleService vehicleService;
 
     @Autowired
-    public VehicleController(VehicleService productService) {
-        this.productService = productService;
+    public VehicleController(VehicleService vehicleService) {
+        this.vehicleService = vehicleService;
     }
     
     @GetMapping
     public ResponseEntity<List<Vehicle>> getVehicles() {
-        logger.info("Visszateritett termekek");
+        logger.info("Visszateritett jarmuvek");
 
-        return new ResponseEntity<List<Vehicle>>(productService.getVehicles(), HttpStatus.OK);
+        return new ResponseEntity<List<Vehicle>>(vehicleService.getVehicles(), HttpStatus.OK);
     }
     
-    @GetMapping("/{productId}")
-    public ResponseEntity getVehicleById(@PathVariable("productId") Long productId) {
-        Optional<Vehicle> product = productService.getVehicle(productId);
-        if(!product.isPresent()){
-            logger.warn("Nincs ilyen termek");
-            return new ResponseEntity<String>(String.format("Vehicle with id '%d' does not exist", productId), HttpStatus.NOT_FOUND);
+    @GetMapping("/{vehicleId}")
+    public ResponseEntity getVehicleById(@PathVariable("vehicleId") Long vehicleId) {
+        Optional<Vehicle> vehicle = vehicleService.getVehicle(vehicleId);
+        if(!vehicle.isPresent()){
+            logger.warn("Nincs ilyen jarmu");
+            return new ResponseEntity<String>(String.format("Vehicle with id '%d' does not exist", vehicleId), HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<Vehicle>(product.get(), HttpStatus.OK);
+        return new ResponseEntity<Vehicle>(vehicle.get(), HttpStatus.OK);
     }
     
-    @DeleteMapping("/{productId}")
-    public ResponseEntity deleteVehicleById(@PathVariable("productId") Long productId) {
-        productService.deleteVehicleById(productId);
-        logger.warn("Kitorlodott sikeresen a termek");
+    @DeleteMapping("/{vehicleId}")
+    public ResponseEntity deleteVehicleById(@PathVariable("vehicleId") Long vehicleId) {
+        vehicleService.deleteVehicleById(vehicleId);
+        logger.warn("Kitorlodott sikeresen a jarmu");
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @GetMapping("category/{category}")
     public ResponseEntity<List<Vehicle>> getVehiclesByCategory(@PathVariable("category") ECategory category) {
-        List<Vehicle> products = productService.getVehiclesByCategory(category);
-        logger.info("Sikeresen visszaterultek a termekek kategoria szerin");
-        return new ResponseEntity<List<Vehicle>>(products, HttpStatus.OK);
+        List<Vehicle> vehicles = vehicleService.getVehiclesByCategory(category);
+        logger.info("Sikeresen visszaterultek a jarmuvek kategoria szerin");
+        return new ResponseEntity<List<Vehicle>>(vehicles, HttpStatus.OK);
     }
 }

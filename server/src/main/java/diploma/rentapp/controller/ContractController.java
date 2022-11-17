@@ -54,7 +54,7 @@ public class ContractController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = (String)auth.getPrincipal();
         User user = userService.getUserByUsername(username);
-        emailService.SendSimpleEmail(user.getEmail(), "Webshop visszaigazolás", "Termékeket sikeresen megvette!");
+        emailService.SendSimpleEmail(user.getEmail(), "Rentapp visszaigazolás", "Jarmuveket sikeresen kivette!");
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 

@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
@@ -17,14 +16,12 @@ public class Vehicle {
 
     public Vehicle() {}
 
-    public Vehicle(String name, String brand, String year, int price, String description, ECategory category, Location location) {
+    public Vehicle(String name, String brand, int price, String description, ECategory category) {
         this.name = name;
         this.brand = brand;
-        this.year = year;
         this.price = price;
         this.description = description;
         this.category = category;
-        this.location = location;
     }
 
 	@Id
@@ -35,8 +32,6 @@ public class Vehicle {
 
     private String brand;
 
-    private String year;
-
     @Positive
     private int price;
 
@@ -46,10 +41,6 @@ public class Vehicle {
     @NotNull
     @Enumerated(EnumType.STRING)
     private ECategory category;
-
-    @NotNull
-    @ManyToOne
-    private Location location;
 
     public Long getId() {
         return id;
@@ -73,14 +64,6 @@ public class Vehicle {
 
     public void setBrand(String brand) {
         this.brand = brand;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
     }
 
     public int getPrice() {
@@ -107,14 +90,6 @@ public class Vehicle {
         this.category = category;
     }
 
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
     public Vehicle copyValidValuesFrom(Vehicle vehicle) {
         if (vehicle.id != null)
             this.id = vehicle.id;
@@ -122,16 +97,12 @@ public class Vehicle {
             this.name = vehicle.name;
         if (vehicle.brand != null)
             this.brand = vehicle.brand;
-        if (vehicle.year != null)
-            this.year = vehicle.year;
         if (vehicle.price != 0)
             this.price = vehicle.price;
         if (vehicle.description != null)
             this.description = vehicle.description;
         if (vehicle.category != null)
             this.category = vehicle.category;
-        if (vehicle.location != null)
-            this.location.copyValidValuesFrom(vehicle.location);
         
         return this;
     }
@@ -142,18 +113,17 @@ public class Vehicle {
                 " id='" + getId() + "'" +
                 ", name='" + getName() + "'" +
                 ", brand='" + getBrand() + "'" +
-                ", year='" + getYear() + "'" +
                 ", price='" + getPrice() + "'" +
                 ", description='" + getDescription() + "'" +
                 ", category='" + getCategory() + "'" +
-                ", location='" + getLocation() + "'" +
                 "}";
     }
 }
 
 // {
 //     "id": 1,
-//     "name": "Termek1",
+//     "name": "Jarmu1",
+//     "brand": "Marka1"
 //     "price": 15,
 //     "description": "Ez egy leiras1",
 //     "category": "OTHER"

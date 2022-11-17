@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'alf'
+group = 'diploma'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '8'
 

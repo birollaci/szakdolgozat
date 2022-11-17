@@ -24,6 +24,7 @@ logging:
 server:
   error:
     include-message: always
+  port: 8085
 application:
   jwt:
     secretKey: "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
