@@ -3,6 +3,7 @@ package diploma.rentapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +34,17 @@ public class LoginController {
     public ResponseEntity register(@RequestBody User user) {
         try {
             return new ResponseEntity<User>(userService.createUser(user), HttpStatus.CREATED);
+        } catch (ValidationException e) {
+            logger.warn(e.getMessage());
+            return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/welcome")
+    public ResponseEntity getwelcome() {
+        try {
+            logger.info("/welcome");
+            return new ResponseEntity<String>("Hello RentApp",HttpStatus.OK);
         } catch (ValidationException e) {
             logger.warn(e.getMessage());
             return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
