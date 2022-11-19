@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">RentApp</string>
+    <string name="action_delete_all">Delete All</string>
+    <string name="warn_message">Hiányos adatok!</string>
+    <string name="stack_owerflow">Nem fog elférni!</string>
+
+    <string name="store">Storage</string>
+    <string name="size">Storage size:</string>
+    <string name="nr">Nr. of boxes:</string>
+    <string name="boxes">Boxes:</string>
+</resources>

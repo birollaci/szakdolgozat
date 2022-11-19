@@ -1,0 +1,32 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: birollaci@gmail.com
+    password: usxbmswywznbjhfu
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        web: ERROR
+server:
+  error:
+    include-message: always
+  port: 8085
+application:
+  jwt:
+    secretKey: "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+    tokenPrefix: "Bearer "
+    tokenExpirationAfterDays: 14

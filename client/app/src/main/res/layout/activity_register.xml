@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical"
+    android:screenOrientation="portrait"
+    tools:context=".RegisterActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:text="Register Form"
+        android:textSize="16pt" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username: " />
+
+            <EditText
+                android:id="@+id/usernameReg"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="username"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password: " />
+
+            <EditText
+                android:id="@+id/passwordReg"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="password"
+                android:inputType="textPassword"
+                tools:ignore="TextFields" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password again: " />
+
+            <EditText
+                android:id="@+id/passwordReg2"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="password"
+                android:inputType="textPassword"
+                tools:ignore="TextFields" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email: " />
+
+            <EditText
+                android:id="@+id/emailReg"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="email"
+                android:inputType="textEmailAddress" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="First Name: " />
+
+            <EditText
+                android:id="@+id/firstnameReg"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="firstname" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Last Name: " />
+
+            <EditText
+                android:id="@+id/lastnameReg"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="lastname" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone: " />
+
+            <EditText
+                android:id="@+id/phoneReg"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="phone"
+                android:inputType="phone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home address: " />
+
+            <EditText
+                android:id="@+id/countryRegHome"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="country" />
+
+            <EditText
+                android:id="@+id/cityRegHome"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="city" />
+
+            <EditText
+                android:id="@+id/zipCodeRegHome"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="zipCode" />
+
+            <EditText
+                android:id="@+id/streetNameRegHome"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="streetName" />
+
+            <EditText
+                android:id="@+id/countyRegHome"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="county" />
+
+            <EditText
+                android:id="@+id/streetNumberRegHome"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="streetNumber" />
+
+            <EditText
+                android:id="@+id/doorRegHome"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="door" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Billing address: " />
+
+            <EditText
+                android:id="@+id/countryRegBilling"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="country" />
+
+            <EditText
+                android:id="@+id/cityRegBilling"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="city" />
+
+            <EditText
+                android:id="@+id/zipCodeRegBilling"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="zipCode" />
+
+            <EditText
+                android:id="@+id/streetNameRegBilling"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="streetName" />
+
+            <EditText
+                android:id="@+id/countyRegBilling"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="county" />
+
+            <EditText
+                android:id="@+id/streetNumberRegBilling"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="streetNumber" />
+
+            <EditText
+                android:id="@+id/doorRegBilling"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="door" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/btnRegisterSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="save" />
+
+</LinearLayout>
