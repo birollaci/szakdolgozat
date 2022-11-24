@@ -2,6 +2,7 @@ package hu.bme.aut.rentapp
 
 import hu.bme.aut.rentapp.models.LoginModel
 import hu.bme.aut.rentapp.models.PostModel
+import hu.bme.aut.rentapp.models.RegisterModel
 import hu.bme.aut.rentapp.models.VehicleModel
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -19,6 +20,10 @@ interface ApiService {
     @Headers("Content-type: application/json")
     @POST("/login")
     fun postLogin(@Body loginModel: LoginModel): Call<ResponseBody>
+
+    @Headers("Content-type: application/json")
+    @POST("/register")
+    fun postRegister(@Body registerModel: RegisterModel): Call<ResponseBody>
 
     @Headers("Content-type: application/json")
     @GET("/vehicle")

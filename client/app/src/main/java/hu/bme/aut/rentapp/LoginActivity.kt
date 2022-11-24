@@ -7,7 +7,6 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import hu.bme.aut.rentapp.data.ServiceGenerator
 import hu.bme.aut.rentapp.models.LoginModel
-import hu.bme.aut.rentapp.models.VehicleModel
 import kotlinx.android.synthetic.main.activity_login.*
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -21,7 +20,6 @@ class LoginActivity : AppCompatActivity() {
         set(value) {
             field = value
         }
-    var loginHttpStatus: Int? = null
     override fun onCreate(savedInstanceState: Bundle?) {
 
         setTheme(R.style.AppTheme)
@@ -37,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
 
 
         btnLogin.setOnClickListener {
-            Log.d("welcome", "alma")
+            Log.d("welcome", "login")
 
 //            call.enqueue(object : Callback<MutableList<PostModel>>{
 //                override fun onResponse(
@@ -114,7 +112,7 @@ class LoginActivity : AppCompatActivity() {
                 val call = serviceGenerator.postLogin(
                     LoginModel(
                         username = username.text.toString(),
-                        password = password.text.toString()
+                        password = password.text.toString(),
                     )
                 )
                 call.enqueue(object : Callback<ResponseBody>{
@@ -128,7 +126,7 @@ class LoginActivity : AppCompatActivity() {
                                 Log.d("welcome", response.code().toString()) // http status code (200)
                                 Log.d("welcome", response.body().toString())
                                 Log.d("welcome", response.headers().get("Authorization").toString())
-                                loginHttpStatus = response.code()
+                                gotoHome(response.code())
                                 bearerToken = response.headers().get("Authorization").toString()
                             } else {
                                 Log.d("welcome", "empty")
@@ -141,12 +139,6 @@ class LoginActivity : AppCompatActivity() {
                     }
 
                 })
-                Log.d("welcome", loginHttpStatus.toString())
-                if(loginHttpStatus == 200)
-                    startActivity(Intent(this, HomeActivity::class.java))
-                else
-                    btnLogin.error = "Username or password is incorrect!"
-
             }
         }
 
@@ -154,5 +146,13 @@ class LoginActivity : AppCompatActivity() {
         btnRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
+    }
+
+    fun gotoHome(loginHttpStatus : Int){
+        Log.d("welcome", loginHttpStatus.toString())
+        if(loginHttpStatus == 200)
+            startActivity(Intent(this, HomeActivity::class.java))
+        else
+            btnLogin.error = "Username or password is incorrect!"
     }
 }

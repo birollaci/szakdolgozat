@@ -16,7 +16,7 @@ object ServiceGenerator {
         .create()
 
     val retrofit = Retrofit.Builder()
-        .baseUrl("http://192.168.1.8:8085")
+        .baseUrl("http://192.168.1.8:8085/")
         .addConverterFactory(GsonConverterFactory.create(gson))
         .addConverterFactory(ScalarsConverterFactory.create())
         .client(client)

@@ -27,12 +27,14 @@ public class LoginController {
 
     @Autowired
     public LoginController(UserService userService) {
+        logger.info("/login");
         this.userService = userService;
     }
     
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody User user) {
         try {
+            logger.info("/register", user);
             return new ResponseEntity<User>(userService.createUser(user), HttpStatus.CREATED);
         } catch (ValidationException e) {
             logger.warn(e.getMessage());
