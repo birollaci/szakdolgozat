@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">RentApp</string>
-    <string name="action_delete_all">Delete All</string>
     <string name="action_log_out">Log Out</string>
+    <string name="action_to_category">Category</string>
+    <string name="action_to_home">Home</string>
+
     <string name="warn_message">Hiányos adatok!</string>
     <string name="stack_owerflow">Nem fog elférni!</string>
 

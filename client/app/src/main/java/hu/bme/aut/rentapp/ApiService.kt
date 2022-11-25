@@ -27,5 +27,5 @@ interface ApiService {
 
     @Headers("Content-type: application/json")
     @GET("/vehicle")
-    fun getVehicles(@Header("Authorization") authorization : String): Call<MutableList<VehicleModel>>
+    fun getVehicles(@Header("Authorization") authorization: String?): Call<MutableList<VehicleModel>>
 }

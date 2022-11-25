@@ -22,6 +22,7 @@
         <activity android:name="hu.bme.aut.rentapp.RegisterActivity"
             android:parentActivityName=".LoginActivity"/>
         <activity android:name="hu.bme.aut.rentapp.HomeActivity" />
+        <activity android:name="hu.bme.aut.rentapp.CategoryActivity" />
     </application>
 
 </manifest>

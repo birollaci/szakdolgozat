@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import hu.bme.aut.rentapp.data.DataManager
 import hu.bme.aut.rentapp.data.ServiceGenerator
 import hu.bme.aut.rentapp.models.LoginModel
 import kotlinx.android.synthetic.main.activity_login.*
@@ -15,11 +16,6 @@ import retrofit2.Callback
 
 class LoginActivity : AppCompatActivity() {
 
-    var bearerToken: String? = ""
-        get() = field
-        set(value) {
-            field = value
-        }
     override fun onCreate(savedInstanceState: Bundle?) {
 
         setTheme(R.style.AppTheme)
@@ -30,9 +26,6 @@ class LoginActivity : AppCompatActivity() {
         val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
 //        val call = serviceGenerator.getPosts()
 //        val call = serviceGenerator.getWelcome()
-
-
-
 
         btnLogin.setOnClickListener {
             Log.d("welcome", "login")
@@ -73,32 +66,6 @@ class LoginActivity : AppCompatActivity() {
 //                }
 //            })
 
-
-//            val call2 = serviceGenerator.getVehicles(bearerToken)
-//            call2.enqueue(object : Callback<MutableList<VehicleModel>>{
-//                override fun onResponse(
-//                    call: Call<MutableList<VehicleModel>>,
-//                    response: Response<MutableList<VehicleModel>>
-//                ) {
-//                    if(response.isSuccessful) {
-//                        if (response.body() != null) {
-//                            Log.d("welcome2", response.code().toString())
-//                            Log.d("welcome2", response.body().toString())
-//                        }else {
-//                            Log.d("welcome2", "emptyVehicle")
-//                        }
-//                    }
-//                }
-//
-//                override fun onFailure(
-//                    call: Call<MutableList<VehicleModel>>,
-//                    t: Throwable
-//                ) {
-//                    Log.d("welcome2", t.message.toString())
-//                }
-//
-//            })
-
             if (username.text.toString().isEmpty()) {
                 username.requestFocus()
                 username.error = "Please enter the username"
@@ -127,7 +94,7 @@ class LoginActivity : AppCompatActivity() {
                                 Log.d("welcome", response.body().toString())
                                 Log.d("welcome", response.headers().get("Authorization").toString())
                                 gotoHome(response.code())
-                                bearerToken = response.headers().get("Authorization").toString()
+                                DataManager.bearerToken = response.headers().get("Authorization").toString()
                             } else {
                                 Log.d("welcome", "empty")
                             }
@@ -135,11 +102,12 @@ class LoginActivity : AppCompatActivity() {
                     }
 
                     override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                        Log.d("welcome", t.message.toString())
+                        Log.d("welcomeError", t.message.toString())
                     }
 
                 })
             }
+            btnLogin.error = "Username or password is incorrect!"
         }
 
         // go to Register screen

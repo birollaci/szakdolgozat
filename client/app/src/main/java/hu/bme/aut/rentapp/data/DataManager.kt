@@ -1,6 +1,12 @@
 package hu.bme.aut.rentapp.data
 
 object DataManager {
+    var bearerToken: String? = ""
+        get() = field
+        set(value) {
+            field = value
+        }
+
     var store = Store(
         "", ""
     )

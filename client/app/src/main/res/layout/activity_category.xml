@@ -6,14 +6,26 @@
     android:layout_margin="16dp"
     android:orientation="vertical"
     android:screenOrientation="portrait"
-    tools:context=".HomeActivity">
+    tools:context=".CategoryActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="16dp"
-        android:text="Home Form"
+        android:text="Category Form"
         android:textSize="16pt" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/list_of_rows"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
