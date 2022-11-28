@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
+import java.util.Date;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -21,7 +22,6 @@ import diploma.rentapp.domain.Vehicle;
 import diploma.rentapp.repository.ContractRepository;
 import diploma.rentapp.repository.VehicleRepository;
 import diploma.rentapp.repository.UserRepository;
-import diploma.rentapp.service.ContractService;
 
 @SpringBootTest
 @TestInstance(Lifecycle.PER_CLASS)
@@ -43,7 +43,7 @@ public class ContractServiceTest {
         ECategory.ELECTRONICS
     );*/
 
-    ArrayList<Vehicle> products = new ArrayList<Vehicle>() {{
+    ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>() {{
         add(new Vehicle(
             "Ferrari 458",
             "Ferrari",
@@ -61,7 +61,13 @@ public class ContractServiceTest {
         ));}
     };
 
-    Contract megaContract = new Contract(products);
+    // 2023 01 01
+    Date startDate = new Date(1672531200);
+
+    // 2023 01 02
+    Date endDate = new Date(1672617600);
+
+    Contract megaContract = new Contract(vehicles, startDate, endDate);
 
     @BeforeAll
     public void beforeAll() {
@@ -103,8 +109,8 @@ public class ContractServiceTest {
 
     @Test
     public void updateContract(){
-        // create products for test
-        for (Vehicle product : products) {
+        // create vehicles for test
+        for (Vehicle product : vehicles) {
             productRepository.save(product);
         }
         productRepository.flush();

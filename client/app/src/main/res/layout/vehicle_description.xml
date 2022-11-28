@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="4dp"
+    android:id="@+id/vehicle_row">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:text="Vehicle Description"
+        android:textSize="16pt" />
+
+    <ImageView
+        android:id="@+id/vehicle_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name: " />
+
+    <TextView
+        android:id="@+id/vehicle_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Brand: " />
+
+    <TextView
+        android:id="@+id/vehicle_brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="brand" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price: " />
+
+    <TextView
+        android:id="@+id/vehicle_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="price" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Category: " />
+
+    <TextView
+        android:id="@+id/vehicle_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="category" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description: " />
+
+    <TextView
+        android:id="@+id/vehicle_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="description" />
+
+    <Button
+        android:id="@+id/btnVehicleSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Button" />
+
+</LinearLayout>

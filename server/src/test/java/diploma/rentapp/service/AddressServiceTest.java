@@ -35,7 +35,7 @@ public class AddressServiceTest {
             "Varad",
             "415522",
             "Dozsa Gyorgy",
-            45,
+            "45",
             "A");
 
     private Address address2 = new Address(
@@ -44,7 +44,7 @@ public class AddressServiceTest {
             "Budapest",
             "1111",
             "Krusper",
-            2,
+            "21",
             "B");
 
     @BeforeAll

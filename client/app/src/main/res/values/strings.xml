@@ -1,14 +1,17 @@
 <resources>
     <string name="app_name">RentApp</string>
+
     <string name="action_log_out">Log Out</string>
     <string name="action_to_category">Category</string>
     <string name="action_to_home">Home</string>
+    <string name="action_to_settings">Settings</string>
 
-    <string name="warn_message">Hiányos adatok!</string>
-    <string name="stack_owerflow">Nem fog elférni!</string>
-
-    <string name="store">Storage</string>
-    <string name="size">Storage size:</string>
-    <string name="nr">Nr. of boxes:</string>
-    <string name="boxes">Boxes:</string>
+    <string name="action_category0">All</string>
+    <string name="action_category1">CAR</string>
+    <string name="action_category2">ROLLER</string>
+    <string name="action_category3">BIKE</string>
+    <string name="action_category4">VAN</string>
+    <string name="action_category5">TRUCK</string>
+    <string name="action_category6">BUS</string>
+    <string name="action_category7">MOTORCYCLE</string>
 </resources>

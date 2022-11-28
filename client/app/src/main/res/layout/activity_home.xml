@@ -9,6 +9,16 @@
     tools:context=".HomeActivity">
 
     <TextView
+        android:id="@+id/profileName"
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="Profile name"
+        android:textAlignment="textEnd"
+        android:textSize="8pt"
+        tools:ignore="RtlCompat" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

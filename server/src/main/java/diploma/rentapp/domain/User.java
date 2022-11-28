@@ -8,6 +8,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import diploma.rentapp.annotation.Password;
+
 @Entity
 @Table(	name = "users", 
 uniqueConstraints = { 
@@ -25,6 +27,7 @@ public class User {
 	private String username;
 
 	@NotBlank
+	@Password
 	private String password;
 
 	@NotBlank

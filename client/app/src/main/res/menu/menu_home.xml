@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/to_settings"
+        android:title="@string/action_to_settings" />
     <item android:id="@+id/to_category"
         android:title="@string/action_to_category" />
     <item android:id="@+id/log_out"

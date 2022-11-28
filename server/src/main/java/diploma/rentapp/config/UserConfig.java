@@ -42,7 +42,22 @@ public class UserConfig {
                     "Bíró",
                     "admin@webshop.hu",
                     "0036301234567",
-                    new Address("Country", "county", "city", "zipCode", "streetName", 1, "door"),
+                    new Address("Country", "county", "city", "zipCode", "streetName", "1", "door"),
+                    null
+                );
+    
+                userService.createAdminUser(admin);
+            }
+
+            if(!userService.userExistsByRole(ERole.ROLE_USER)){
+                User admin = new User(
+                    "user",
+                    "user",
+                    "Elek",
+                    "Teszt",
+                    "test@test.hu",
+                    "003612346798",
+                    new Address("CountryTest", "countytest", "citytest", "zipCodetest", "streetNametest", "2", "doortest"),
                     null
                 );
     

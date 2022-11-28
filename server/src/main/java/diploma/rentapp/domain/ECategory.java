@@ -3,10 +3,9 @@ package diploma.rentapp.domain;
 public enum ECategory {
     CAR,
     ROLLER,
-    EBIKE,
-    BICYCLE,
+    BIKE,
     VAN,
     TRUCK,
     BUS,
-    OTHER
+    MOTORCYCLE,
 }

@@ -6,7 +6,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-
 object ServiceGenerator {
 
     val client = OkHttpClient.Builder().build()
@@ -15,15 +14,13 @@ object ServiceGenerator {
         .setLenient()
         .create()
 
-    val retrofit = Retrofit.Builder()
-        .baseUrl("http://192.168.1.8:8085/")
-        .addConverterFactory(GsonConverterFactory.create(gson))
-        .addConverterFactory(ScalarsConverterFactory.create())
-        .client(client)
-        .build()
-
-    fun <T> buildService(service: Class<T>): T {
-        return retrofit.create(service)
+    fun <T> buildService(service: Class<T>, baseURL: String = "http://192.168.1.8:8085/"): T {
+        return Retrofit.Builder()
+            .baseUrl(baseURL)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .client(client)
+            .build().create(service)
     }
 
 }

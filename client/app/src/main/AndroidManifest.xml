@@ -23,6 +23,7 @@
             android:parentActivityName=".LoginActivity"/>
         <activity android:name="hu.bme.aut.rentapp.HomeActivity" />
         <activity android:name="hu.bme.aut.rentapp.CategoryActivity" />
+        <activity android:name="hu.bme.aut.rentapp.SettingsActivity" />
     </application>
 
 </manifest>

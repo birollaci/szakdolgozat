@@ -34,7 +34,7 @@ public class UserServiceTest {
         "Lastname",
         "user1@webshop.hu",
         "0036301234567",
-        new Address("Country", "county", "city", "zipCode", "streetName", 1, "door"),
+        new Address("Country", "county", "city", "zipCode", "streetName", "1", "door"),
         null
     );
     private User user2 = new User(
@@ -44,7 +44,7 @@ public class UserServiceTest {
         "Lastname",
         "user2@webshop.hu",
         "0036301234567",
-        new Address("Country", "county", "city", "zipCode", "streetName", 1, "door"),
+        new Address("Country", "county", "city", "zipCode", "streetName", "1", "door"),
         null
     );
 

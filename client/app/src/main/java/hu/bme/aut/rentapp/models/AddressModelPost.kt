@@ -9,6 +9,6 @@ data class AddressModelPost(
     @SerializedName("city") val city : String? = null,
     @SerializedName("zipCode") val zipCode : String? = null,
     @SerializedName("streetName") val streetName : String? = null,
-    @SerializedName("number") val number : Int? = null,
+    @SerializedName("number") val number : String? = null,
     @SerializedName("door") val door : String? = null,
 )

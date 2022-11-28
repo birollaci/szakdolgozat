@@ -28,15 +28,14 @@ public class Address {
     @NotBlank
     private String streetName;
     
-    @Positive
-    private int number;
+    private String number;
 
     private String door;
 
     public Address() {
     }
 
-    public Address(String country, String county, String city, String zipCode, String streetName, int number, String door) {
+    public Address(String country, String county, String city, String zipCode, String streetName, String number, String door) {
         this.country = country;
         this.county = county;
         this.city = city;
@@ -94,11 +93,11 @@ public class Address {
         this.streetName = streetName;
     }
 
-    public int getnumber() {
+    public String getnumber() {
         return number;
     }
 
-    public void setnumber(int number) {
+    public void setnumber(String number) {
         this.number = number;
     }
 
@@ -121,7 +120,7 @@ public class Address {
             this.zipCode = address.zipCode;
         if (address.streetName != null)
             this.streetName = address.streetName;
-        if (address.number > 0)
+        if (address.number != null)
             this.number = address.number;
         if (address.door != null)
             this.door = address.door;

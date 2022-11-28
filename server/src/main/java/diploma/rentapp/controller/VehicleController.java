@@ -35,7 +35,7 @@ public class VehicleController {
     
     @GetMapping
     public ResponseEntity<List<Vehicle>> getVehicles() {
-        logger.info("Visszateritett jarmuvek");
+        logger.info("Get Vehicles");
 
         return new ResponseEntity<List<Vehicle>>(vehicleService.getVehicles(), HttpStatus.OK);
     }
@@ -44,7 +44,7 @@ public class VehicleController {
     public ResponseEntity getVehicleById(@PathVariable("vehicleId") Long vehicleId) {
         Optional<Vehicle> vehicle = vehicleService.getVehicle(vehicleId);
         if(!vehicle.isPresent()){
-            logger.warn("Nincs ilyen jarmu");
+            logger.warn("Vehicle with " + vehicleId + " is not found");
             return new ResponseEntity<String>(String.format("Vehicle with id '%d' does not exist", vehicleId), HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Vehicle>(vehicle.get(), HttpStatus.OK);
@@ -53,14 +53,14 @@ public class VehicleController {
     @DeleteMapping("/{vehicleId}")
     public ResponseEntity deleteVehicleById(@PathVariable("vehicleId") Long vehicleId) {
         vehicleService.deleteVehicleById(vehicleId);
-        logger.warn("Kitorlodott sikeresen a jarmu");
+        logger.warn("The vehicle with " + vehicleId + " deleted");
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @GetMapping("category/{category}")
     public ResponseEntity<List<Vehicle>> getVehiclesByCategory(@PathVariable("category") ECategory category) {
         List<Vehicle> vehicles = vehicleService.getVehiclesByCategory(category);
-        logger.info("Sikeresen visszaterultek a jarmuvek kategoria szerin");
+        logger.info("Get vehicles by category");
         return new ResponseEntity<List<Vehicle>>(vehicles, HttpStatus.OK);
     }
 }

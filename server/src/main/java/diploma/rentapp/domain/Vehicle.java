@@ -6,7 +6,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
@@ -35,7 +34,7 @@ public class Vehicle {
     @Positive
     private int price;
 
-    @Size(min = 5, max = 80)
+    @Size(max = 200)
     private String description;
 
     @NotNull

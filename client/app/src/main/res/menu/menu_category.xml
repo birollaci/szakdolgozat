@@ -2,6 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/to_home"
         android:title="@string/action_to_home" />
+    <item android:id="@+id/categories"
+        android:title="@string/action_to_category" >
+        <menu>
+            <item android:id="@+id/category0" android:title="@string/action_category0"/>
+            <item android:id="@+id/category1" android:title="@string/action_category1"/>
+            <item android:id="@+id/category2" android:title="@string/action_category2"/>
+            <item android:id="@+id/category3" android:title="@string/action_category3"/>
+            <item android:id="@+id/category4" android:title="@string/action_category4"/>
+            <item android:id="@+id/category5" android:title="@string/action_category5"/>
+            <item android:id="@+id/category6" android:title="@string/action_category6"/>
+            <item android:id="@+id/category7" android:title="@string/action_category7"/>
+        </menu>
+    </item>
     <item android:id="@+id/log_out"
         android:title="@string/action_log_out" />
 </menu>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical"
+    android:screenOrientation="portrait"
+    tools:context=".SettingsActivity">
+
+    <TextView
+        android:id="@+id/profileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="Profile name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:text="Settings Form"
+        android:textSize="16pt" />
+
+    <ScrollView
+        android:id="@+id/settings_scroll"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username*: " />
+
+            <EditText
+                android:id="@+id/usernameSettings"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="username"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password*: " />
+
+            <EditText
+                android:id="@+id/passwordSettings"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="password"
+                android:inputType="textPassword"
+                tools:ignore="TextFields" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email*: " />
+
+            <EditText
+                android:id="@+id/emailSettings"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="email"
+                android:inputType="textEmailAddress" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="First Name*: " />
+
+            <EditText
+                android:id="@+id/firstnameSettings"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="firstname" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Last Name*: " />
+
+            <EditText
+                android:id="@+id/lastnameSettings"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="lastname" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone*: " />
+
+            <EditText
+                android:id="@+id/phoneSettings"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="phone"
+                android:inputType="phone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home address*: " />
+
+            <EditText
+                android:id="@+id/countrySettingsHome"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="country*" />
+
+            <EditText
+                android:id="@+id/citySettingsHome"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="city*" />
+
+            <EditText
+                android:id="@+id/zipCodeSettingsHome"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="zipCode*" />
+
+            <EditText
+                android:id="@+id/streetNameSettingsHome"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="streetName*" />
+
+            <EditText
+                android:id="@+id/countySettingsHome"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="county" />
+
+            <EditText
+                android:id="@+id/numberSettingsHome"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="number*" />
+
+            <EditText
+                android:id="@+id/doorSettingsHome"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="door" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Billing address: " />
+
+            <EditText
+                android:id="@+id/countrySettingsBilling"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="country" />
+
+            <EditText
+                android:id="@+id/citySettingsBilling"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="city" />
+
+            <EditText
+                android:id="@+id/zipCodeSettingsBilling"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="zipCode" />
+
+            <EditText
+                android:id="@+id/streetNameSettingsBilling"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="streetName" />
+
+            <EditText
+                android:id="@+id/countySettingsBilling"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="county" />
+
+            <EditText
+                android:id="@+id/numberSettingsBilling"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="number" />
+
+            <EditText
+                android:id="@+id/doorSettingsBilling"
+                android:layout_width="match_parent"
+                android:layout_height="110px"
+                android:textSize="6pt"
+                android:hint="door" />
+        </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/btnSettingsUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="update" />
+
+        <Button
+            android:id="@+id/btnSettingsDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="delete" />
+
+    </LinearLayout>
+
+</LinearLayout>

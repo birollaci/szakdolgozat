@@ -37,7 +37,7 @@ public class UserController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = (String)auth.getPrincipal();
         User user = userService.getUserByUsername(username);
-        logger.info("Visszateritett user");
+        logger.info("Response user");
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
@@ -46,7 +46,7 @@ public class UserController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = userService.getUserByUsername((String)auth.getPrincipal());
         user = userService.updateUser(currentUser, user);
-        logger.info("Sikeresen updatelodott a user");
+        logger.info("User updated");
 
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
@@ -56,7 +56,7 @@ public class UserController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = (String)auth.getPrincipal();
         userService.deleteUserByUsername(username);
-        logger.info("Sikeresen torlodott a user");
+        logger.info("User " + username + " deleted");
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

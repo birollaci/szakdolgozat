@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import hu.bme.aut.rentapp.data.DataManager
 import hu.bme.aut.rentapp.data.ServiceGenerator
 import hu.bme.aut.rentapp.models.LoginModel
+import kotlinx.android.synthetic.main.activity_category.*
 import kotlinx.android.synthetic.main.activity_login.*
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -16,8 +17,10 @@ import retrofit2.Callback
 
 class LoginActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    private val dialog: Dialog = Dialog()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d("welcome", "LoginActivity")
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -25,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
 
         val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
 //        val call = serviceGenerator.getPosts()
-//        val call = serviceGenerator.getWelcome()
+
 
         btnLogin.setOnClickListener {
             Log.d("welcome", "login")
@@ -43,28 +46,7 @@ class LoginActivity : AppCompatActivity() {
 //                }
 //
 //            })
-//            call.enqueue(object : Callback<ResponseBody> {
-//                override fun onResponse(
-//                    call: Call<ResponseBody>,
-//                    response: Response<ResponseBody>
-//                ) {
-//                    Log.d("welcome", response.isSuccessful.toString())
-//                    if(response.isSuccessful){
-//                        if (response.body() != null) {
-//                            val s = response.body()!!.string().toString()
-//                            Log.d("welcome", "ok")
-//                            Log.d("welcome", s)
-//                            Log.d("welcome", response.body().toString())
-//                        }else{
-//                            Log.d("welcome", "empty")
-//                        }
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-//                    Log.d("welcome", t.message.toString())
-//                }
-//            })
+
 
             if (username.text.toString().isEmpty()) {
                 username.requestFocus()
@@ -90,11 +72,9 @@ class LoginActivity : AppCompatActivity() {
                         if(response.isSuccessful) {
                             if (response.body() != null) {
                                 Log.d("welcome", "ok")
-                                Log.d("welcome", response.code().toString()) // http status code (200)
-                                Log.d("welcome", response.body().toString())
-                                Log.d("welcome", response.headers().get("Authorization").toString())
                                 gotoHome(response.code())
                                 DataManager.bearerToken = response.headers().get("Authorization").toString()
+                                DataManager.profileNameText = username.text.toString()
                             } else {
                                 Log.d("welcome", "empty")
                             }
@@ -107,12 +87,41 @@ class LoginActivity : AppCompatActivity() {
 
                 })
             }
-            btnLogin.error = "Username or password is incorrect!"
+            btnLogin.error = "Username or password is incorrect or User not found!"
         }
 
         // go to Register screen
         btnRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
+        }
+
+        btnTestConnection.setOnClickListener {
+            val welcomeCall = serviceGenerator.getWelcome()
+
+            welcomeCall.enqueue(object : Callback<ResponseBody> {
+                override fun onResponse(
+                    call: Call<ResponseBody>,
+                    response: Response<ResponseBody>
+                ) {
+                    Log.d("welcome", response.isSuccessful.toString())
+                    if(response.isSuccessful){
+                        if (response.body() != null) {
+                            val s = response.body()!!.string().toString()
+                            Log.d("welcome", "ok")
+                            Log.d("welcome", s)
+                            Log.d("welcome", response.body().toString())
+                            connectionOk(response.code())
+                        }else{
+                            Log.d("welcome", "empty")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    Log.d("welcome", t.message.toString())
+                    connectionOk(404)
+                }
+            })
         }
     }
 
@@ -122,5 +131,12 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, HomeActivity::class.java))
         else
             btnLogin.error = "Username or password is incorrect!"
+    }
+
+    private fun connectionOk(code: Int) {
+        if(code == 200)
+            dialog.showDefaultDialog(this, "The connection to the server was successful!", "Info")
+        else
+            dialog.showDefaultDialog(this, "Failed connection to server!", "Alert")
     }
 }
