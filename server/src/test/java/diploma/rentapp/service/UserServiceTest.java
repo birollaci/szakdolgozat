@@ -17,7 +17,6 @@ import diploma.rentapp.domain.Address;
 import diploma.rentapp.domain.ERole;
 import diploma.rentapp.domain.User;
 import diploma.rentapp.repository.UserRepository;
-import diploma.rentapp.service.UserService;
 
 @SpringBootTest
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)

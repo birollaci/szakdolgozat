@@ -17,7 +17,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import diploma.rentapp.domain.Address;
 import diploma.rentapp.repository.AddressRepository;
 import diploma.rentapp.repository.UserRepository;
-import diploma.rentapp.service.AddressService;
 
 @SpringBootTest
 @TestInstance(Lifecycle.PER_CLASS)

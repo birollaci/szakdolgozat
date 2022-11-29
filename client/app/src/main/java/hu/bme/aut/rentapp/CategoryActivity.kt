@@ -124,6 +124,7 @@ class CategoryActivity : AppCompatActivity() {
             }
             holder.itemAdd.setOnClickListener {
                 Log.d("welcome", "itemAdd $position")
+
             }
         }
 

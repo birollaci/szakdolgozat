@@ -14,7 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import diploma.rentapp.domain.ECategory;
 import diploma.rentapp.domain.Vehicle;
 import diploma.rentapp.repository.VehicleRepository;
-import diploma.rentapp.service.VehicleService;
 
 @SpringBootTest
 public class VehicleServiceTest {

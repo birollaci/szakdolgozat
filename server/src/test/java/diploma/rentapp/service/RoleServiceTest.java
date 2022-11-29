@@ -18,7 +18,6 @@ import diploma.rentapp.domain.ERole;
 import diploma.rentapp.domain.Role;
 import diploma.rentapp.repository.RoleRepository;
 import diploma.rentapp.repository.UserRepository;
-import diploma.rentapp.service.RoleService;
 
 @SpringBootTest
 @TestInstance(Lifecycle.PER_CLASS)

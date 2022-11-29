@@ -21,7 +21,7 @@ import diploma.rentapp.service.ContractService;
 import diploma.rentapp.service.EmailService;
 import diploma.rentapp.service.UserService;
 
-
+import javax.validation.ValidationException;
 @RestController
 @RequestMapping(path = "/contract")
 @PreAuthorize("isAuthenticated()")
@@ -47,15 +47,21 @@ public class ContractController {
         return new ResponseEntity<Contract>(contract, HttpStatus.OK);
     }
 
-    @PostMapping("/buy")
+    @PostMapping("/rent")
     public ResponseEntity buyContractContent(){
-        Contract contract = getCurrentUserContract();
-        userService.buyContractContent(contract);
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = (String)auth.getPrincipal();
-        User user = userService.getUserByUsername(username);
-        emailService.SendSimpleEmail(user.getEmail(), "Rentapp visszaigazolás", "Jarmuveket sikeresen kivette!");
-        return ResponseEntity.status(HttpStatus.OK).build();
+        try {
+            Contract contract = getCurrentUserContract();
+            logger.info("/rent", contract);
+            userService.buyContractContent(contract);
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String username = (String)auth.getPrincipal();
+            User user = userService.getUserByUsername(username);
+            emailService.SendSimpleEmail(user.getEmail(), "Rentapp confirmation", "You have successfully rented vehicles!");
+            return ResponseEntity.status(HttpStatus.OK).build();
+        } catch (ValidationException e) {
+            logger.warn(e.getMessage());
+            return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PutMapping("/{vehicleId}")
