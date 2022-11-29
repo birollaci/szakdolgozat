@@ -7,10 +7,6 @@ import retrofit2.http.*
 
 interface ApiService {
 
-
-    @GET("/posts")
-    fun getPosts(): Call<MutableList<PostModel>>
-
     @GET("/welcome")
     fun getWelcome(): Call<ResponseBody>
 
@@ -25,9 +21,11 @@ interface ApiService {
     @GET("/vehicle")
     fun getVehicles(@Header("Authorization") authorization: String?): Call<MutableList<VehicleModel>>
 
-
     @GET("/vehicle/category/{category}")
     fun getVehiclesByCategory(@Header("Authorization") authorization: String?, @Path("category") category: String?): Call<MutableList<VehicleModel>>
+
+    @GET("/vehicle/{id}")
+    fun getVehicleById(@Header("Authorization") authorization: String?, @Path("id") id: Int?): Call<VehicleModel>
 
     @GET("/user")
     fun getUsers(@Header("Authorization") authorization: String?): Call<UserModel>

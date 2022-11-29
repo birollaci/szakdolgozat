@@ -19,6 +19,8 @@ class LoginActivity : AppCompatActivity() {
 
     private val dialog: Dialog = Dialog()
 
+    val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("welcome", "LoginActivity")
         setTheme(R.style.AppTheme)
@@ -26,103 +28,90 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
-//        val call = serviceGenerator.getPosts()
-
-
         btnLogin.setOnClickListener {
-            Log.d("welcome", "login")
-
-//            call.enqueue(object : Callback<MutableList<PostModel>>{
-//                override fun onResponse(
-//                    call: Call<MutableList<PostModel>>,
-//                    response: Response<MutableList<PostModel>>
-//                ) {
-//                    Log.d("welcome", response.body().toString())
-//                }
-//
-//                override fun onFailure(call: Call<MutableList<PostModel>>, t: Throwable) {
-//                    Log.d("welcome", t.message.toString())
-//                }
-//
-//            })
-
-
-            if (username.text.toString().isEmpty()) {
-                username.requestFocus()
-                username.error = "Please enter the username"
-            }
-            else if (password.text.toString().isEmpty()) {
-                password.requestFocus()
-                password.error = "Please enter the password"
-            }
-            // login to server
-            else {
-                val call = serviceGenerator.postLogin(
-                    LoginModel(
-                        username = username.text.toString(),
-                        password = password.text.toString(),
-                    )
-                )
-                call.enqueue(object : Callback<ResponseBody>{
-                    override fun onResponse(
-                        call: Call<ResponseBody>,
-                        response: Response<ResponseBody>
-                    ) {
-                        if(response.isSuccessful) {
-                            if (response.body() != null) {
-                                Log.d("welcome", "ok")
-                                gotoHome(response.code())
-                                DataManager.bearerToken = response.headers().get("Authorization").toString()
-                                DataManager.profileNameText = username.text.toString()
-                            } else {
-                                Log.d("welcome", "empty")
-                            }
-                        }
-                    }
-
-                    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                        Log.d("welcomeError", t.message.toString())
-                    }
-
-                })
-            }
-            btnLogin.error = "Username or password is incorrect or User not found!"
+            login()
         }
 
-        // go to Register screen
         btnRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
         btnTestConnection.setOnClickListener {
-            val welcomeCall = serviceGenerator.getWelcome()
+            welcome()
+        }
+    }
 
-            welcomeCall.enqueue(object : Callback<ResponseBody> {
+    private fun login() {
+        Log.d("welcome", "login")
+
+        if (username.text.toString().isEmpty()) {
+            username.requestFocus()
+            username.error = "Please enter the username"
+        }
+        else if (password.text.toString().isEmpty()) {
+            password.requestFocus()
+            password.error = "Please enter the password"
+        }
+        // login to server
+        else {
+            val call = serviceGenerator.postLogin(
+                LoginModel(
+                    username = username.text.toString(),
+                    password = password.text.toString(),
+                )
+            )
+            call.enqueue(object : Callback<ResponseBody>{
                 override fun onResponse(
                     call: Call<ResponseBody>,
                     response: Response<ResponseBody>
                 ) {
-                    Log.d("welcome", response.isSuccessful.toString())
-                    if(response.isSuccessful){
+                    if(response.isSuccessful) {
                         if (response.body() != null) {
-                            val s = response.body()!!.string().toString()
                             Log.d("welcome", "ok")
-                            Log.d("welcome", s)
-                            Log.d("welcome", response.body().toString())
-                            connectionOk(response.code())
-                        }else{
+                            gotoHome(response.code())
+                            DataManager.bearerToken = response.headers().get("Authorization").toString()
+                            DataManager.profileNameText = username.text.toString()
+                        } else {
                             Log.d("welcome", "empty")
                         }
                     }
                 }
 
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                    Log.d("welcome", t.message.toString())
-                    connectionOk(404)
+                    Log.d("welcomeError", t.message.toString())
                 }
+
             })
         }
+    }
+
+    private fun welcome() {
+        val welcomeCall = serviceGenerator.getWelcome()
+
+        welcomeCall.enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(
+                call: Call<ResponseBody>,
+                response: Response<ResponseBody>
+            ) {
+                Log.d("welcome", response.isSuccessful.toString())
+                if(response.isSuccessful){
+                    if (response.body() != null) {
+                        val s = response.body()!!.string().toString()
+                        Log.d("welcome", "ok")
+                        Log.d("welcome", s)
+                        Log.d("welcome", response.body().toString())
+                        connectionOk(response.code())
+                    }else{
+                        Log.d("welcome", "empty")
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                Log.d("welcome", t.message.toString())
+                connectionOk(404)
+            }
+        })
     }
 
     fun gotoHome(loginHttpStatus : Int){

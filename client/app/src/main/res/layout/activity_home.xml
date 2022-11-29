@@ -15,7 +15,7 @@
         android:layout_gravity="right"
         android:text="Profile name"
         android:textAlignment="textEnd"
-        android:textSize="8pt"
+        android:textSize="10pt"
         tools:ignore="RtlCompat" />
 
     <TextView

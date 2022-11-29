@@ -4,21 +4,25 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
+import android.view.*
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.rentapp.data.DataManager
 import hu.bme.aut.rentapp.data.ServiceGenerator
 import hu.bme.aut.rentapp.models.VehicleModel
 import kotlinx.android.synthetic.main.activity_category.*
-import kotlinx.android.synthetic.main.vehicle_row.view.*
+import kotlinx.android.synthetic.main.item.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class CategoryActivity : AppCompatActivity() {
+
+    private lateinit var adapter: Adapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("welcome", "CategoryActivity")
@@ -29,21 +33,45 @@ class CategoryActivity : AppCompatActivity() {
 
         profileName.text = DataManager.profileNameText
 
-        uploadAllVehicles()
-
-        val rowItem = LayoutInflater.from(this).inflate(R.layout.vehicle_row, null)
-        rowItem.btnDetails.setOnClickListener {
-            Log.d("welcome", "details")
-            Log.d("welcome", rowItem.vehicle_id.toString())
-        }
-
-        rowItem.btnAdd.setOnClickListener {
-            Log.d("welcome", "add")
-            Log.d("welcome", rowItem.vehicle_id.toString())
-        }
+        initRecyclerView()
     }
 
-    private fun uploadByCategory(category: String) {
+    private fun initRecyclerView() {
+        val MainRecyclerView = findViewById<RecyclerView>(R.id.MainRecyclerView)
+        MainRecyclerView.layoutManager = LinearLayoutManager(this)
+        adapter = Adapter()
+
+        uploadAll(adapter)
+
+        MainRecyclerView.adapter = adapter
+    }
+
+    private fun uploadAll(adapter: Adapter) {
+        val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
+        val call = serviceGenerator.getVehicles(DataManager.bearerToken)
+        call.enqueue(object : Callback<MutableList<VehicleModel>> {
+            override fun onResponse(
+                call: Call<MutableList<VehicleModel>>,
+                response: Response<MutableList<VehicleModel>>
+            ) {
+                if(response.isSuccessful) {
+                    if (response.body() != null) {
+                        for (item in response.body()!!) {
+                            adapter.add(item)
+                        }
+                    }else{
+                        Log.d("welcome", "empty")
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<MutableList<VehicleModel>>, t: Throwable) {
+                Log.d("welcomeerror", t.message.toString())
+            }
+        })
+    }
+
+    private fun uploadByCategory(adapter: Adapter, category: String) {
         val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
         val call = serviceGenerator.getVehiclesByCategory(DataManager.bearerToken, category)
         call.enqueue(object : Callback<MutableList<VehicleModel>> {
@@ -54,7 +82,7 @@ class CategoryActivity : AppCompatActivity() {
                 if(response.isSuccessful) {
                     if (response.body() != null) {
                         for (item in response.body()!!) {
-                            upload(item)
+                            adapter.add(item)
                         }
                     }else{
                         Log.d("welcome", "empty")
@@ -68,68 +96,47 @@ class CategoryActivity : AppCompatActivity() {
         })
     }
 
-    private fun uploadAllVehicles() {
-        val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
-        val call = serviceGenerator.getVehicles(DataManager.bearerToken,)
-        call.enqueue(object : Callback<MutableList<VehicleModel>> {
-            override fun onResponse(
-                call: Call<MutableList<VehicleModel>>,
-                response: Response<MutableList<VehicleModel>>
-            ) {
-                if(response.isSuccessful) {
-                    if (response.body() != null) {
-                        for (item in response.body()!!) {
-                            upload(item)
-                        }
-                    }else{
-                        Log.d("welcome", "empty")
-                    }
-                }
-            }
+    inner class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
-            override fun onFailure(call: Call<MutableList<VehicleModel>>, t: Throwable) {
-                Log.d("welcomeerror", t.message.toString())
-            }
-        })
-    }
-
-    private fun upload(item: VehicleModel) {
-        val rowItem = LayoutInflater.from(this).inflate(R.layout.vehicle_row, null)
-
-        rowItem.vehicle_id.text = item.id.toString()
-        rowItem.vehicle_name.text = item.name
-        rowItem.vehicle_brand.text = item.brand
-        rowItem.vehicle_price.text = item.price.toString()
-        rowItem.vehicle_category.text = item.category
-//        rowItem.vehicle_description.text = item.description
-
-        when {
-            item.category.toString() == "CAR" -> {
-                rowItem.vehicle_image.setImageResource(R.drawable.car)
-            }
-            item.category.toString() == "ROLLER" -> {
-                rowItem.vehicle_image.setImageResource(R.drawable.roller)
-            }
-            item.category.toString() == "BIKE" -> {
-                rowItem.vehicle_image.setImageResource(R.drawable.bike)
-            }
-            item.category.toString() == "VAN" -> {
-                rowItem.vehicle_image.setImageResource(R.drawable.van)
-            }
-            item.category.toString() == "TRUCK" -> {
-                rowItem.vehicle_image.setImageResource(R.drawable.truck)
-            }
-            item.category.toString() == "BUS" -> {
-                rowItem.vehicle_image.setImageResource(R.drawable.bus)
-            }
-            item.category.toString() == "MOTORCYCLE" -> {
-                rowItem.vehicle_image.setImageResource(R.drawable.motorcycle)
-            }
-            else -> {}
+        private val items: MutableList<VehicleModel>
+        init {
+            items = ArrayList()
         }
 
-        val listSize: Int = list_of_rows.childCount
-        list_of_rows.addView(rowItem, listSize - 1)
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false)
+            return ViewHolder(view)
+        }
+
+        fun add(new: VehicleModel) {
+            items.add(new)
+            // beszuras
+            notifyItemInserted(itemCount - 1)
+        }
+
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            holder.itemId.text = items[position].id.toString()
+            holder.itemName.text = items[position].name
+            holder.itemDetails.setOnClickListener {
+                Log.d("welcome", "item $position")
+                DataManager.vehicleId = items[position].id
+                startActivity(Intent(this@CategoryActivity, DetailsActivity::class.java))
+            }
+            holder.itemAdd.setOnClickListener {
+                Log.d("welcome", "itemAdd $position")
+            }
+        }
+
+        override fun getItemCount(): Int {
+            return items.size
+        }
+
+        inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            var itemId = itemView.findViewById<TextView>(R.id.item_id)
+            var itemName = itemView.findViewById<TextView>(R.id.item_name)
+            var itemDetails = itemView.findViewById<Button>(R.id.item_button)
+            var itemAdd = itemView.findViewById<Button>(R.id.item_button2)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -138,50 +145,58 @@ class CategoryActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val MainRecyclerView = findViewById<RecyclerView>(R.id.MainRecyclerView)
+        MainRecyclerView.layoutManager = LinearLayoutManager(this)
+        adapter = Adapter()
+
         return when (item.getItemId()) {
             R.id.category0 -> {
-                list_of_rows.removeAllViews()
-                uploadAllVehicles()
+                uploadAll(adapter)
+                MainRecyclerView.adapter = adapter
                 true
             }
 
             R.id.category1 -> {
-                list_of_rows.removeAllViews()
-                uploadByCategory("CAR")
+                uploadByCategory(adapter, "CAR")
+                MainRecyclerView.adapter = adapter
                 true
             }
             R.id.category2 -> {
-                list_of_rows.removeAllViews()
-                uploadByCategory("ROLLER")
+                uploadByCategory(adapter, "ROLLER")
+                MainRecyclerView.adapter = adapter
                 true
             }
             R.id.category3 -> {
-                list_of_rows.removeAllViews()
-                uploadByCategory("BIKE")
+                uploadByCategory(adapter, "BIKE")
+                MainRecyclerView.adapter = adapter
                 true
             }
             R.id.category4 -> {
-                list_of_rows.removeAllViews()
-                uploadByCategory("VAN")
+                uploadByCategory(adapter, "VAN")
+                MainRecyclerView.adapter = adapter
                 true
             }
             R.id.category5 -> {
-                list_of_rows.removeAllViews()
-                uploadByCategory("TRUCK")
+                uploadByCategory(adapter, "TRUCK")
+                MainRecyclerView.adapter = adapter
                 true
             }
             R.id.category6 -> {
-                list_of_rows.removeAllViews()
-                uploadByCategory("BUS")
+                uploadByCategory(adapter, "BUS")
+                MainRecyclerView.adapter = adapter
                 true
             }
             R.id.category7 -> {
-                list_of_rows.removeAllViews()
-                uploadByCategory("MOTORCYCLE")
+                uploadByCategory(adapter, "MOTORCYCLE")
+                MainRecyclerView.adapter = adapter
                 true
             }
             R.id.to_home -> {
                 startActivity(Intent(this, HomeActivity::class.java))
+                true
+            }
+            R.id.to_contract -> {
+                startActivity(Intent(this, ContractActivity::class.java))
                 true
             }
             R.id.log_out -> {

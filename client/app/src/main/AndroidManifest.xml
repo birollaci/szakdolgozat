@@ -24,6 +24,8 @@
         <activity android:name="hu.bme.aut.rentapp.HomeActivity" />
         <activity android:name="hu.bme.aut.rentapp.CategoryActivity" />
         <activity android:name="hu.bme.aut.rentapp.SettingsActivity" />
+        <activity android:name="hu.bme.aut.rentapp.DetailsActivity" />
+        <activity android:name="hu.bme.aut.rentapp.ContractActivity" />
     </application>
 
 </manifest>

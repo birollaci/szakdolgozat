@@ -11,36 +11,34 @@ import androidx.appcompat.app.AppCompatActivity
 import hu.bme.aut.rentapp.data.DataManager
 import kotlinx.android.synthetic.main.activity_home.*
 
-class HomeActivity : AppCompatActivity() {
-    val loginActivity : LoginActivity = LoginActivity()
+class ContractActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("welcome", "HomeActivity")
+        Log.d("welcome", "Contract")
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_contract)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
         profileName.text = DataManager.profileNameText
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_home, menu)
+        menuInflater.inflate(R.menu.menu_contract, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.getItemId()) {
-            R.id.to_settings -> {
-                startActivity(Intent(this, SettingsActivity::class.java))
+            R.id.to_home -> {
+                startActivity(Intent(this, HomeActivity::class.java))
                 true
             }
             R.id.to_category -> {
                 startActivity(Intent(this, CategoryActivity::class.java))
                 true
             }
-            R.id.to_contract -> {
-                startActivity(Intent(this, ContractActivity::class.java))
+            R.id.delete_all -> {
                 true
             }
             R.id.log_out -> {
@@ -50,9 +48,5 @@ class HomeActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    override fun onBackPressed() {
-        Toast.makeText(this, "Back is blocked!!!", Toast.LENGTH_SHORT).show()
     }
 }

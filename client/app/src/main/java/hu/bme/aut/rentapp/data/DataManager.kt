@@ -6,4 +6,6 @@ object DataManager {
     var bearerToken: String? = ""
 
     var profileNameText: String? = ""
+
+    var vehicleId: Int? = 0
 }

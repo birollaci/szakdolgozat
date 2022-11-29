@@ -17,7 +17,6 @@ import hu.bme.aut.rentapp.models.*
 import hu.bme.aut.rentapp.validations.Validation
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_settings.*
-import kotlinx.android.synthetic.main.vehicle_row.view.*
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
