@@ -7,9 +7,12 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import hu.bme.aut.rentapp.api.ApiService
 import hu.bme.aut.rentapp.data.DataManager
 import hu.bme.aut.rentapp.data.ServiceGenerator
+import hu.bme.aut.rentapp.models.ContractModel
 import hu.bme.aut.rentapp.models.VehicleModel
+import kotlinx.android.synthetic.main.activity_contract.*
 import kotlinx.android.synthetic.main.activity_details.*
 import kotlinx.android.synthetic.main.activity_home.profileName
 import retrofit2.Call
@@ -17,6 +20,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class DetailsActivity : AppCompatActivity() {
+
+    private val dialog: Dialog = Dialog()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("welcome", "Details")
@@ -27,10 +32,47 @@ class DetailsActivity : AppCompatActivity() {
 
         profileName.text = DataManager.profileNameText
 
-        uploadApiVehicleById(DataManager.vehicleId)
+        uploadAllByVehicleId(DataManager.vehicleId)
+
+        btnDetailsAdd.setOnClickListener {
+            Log.d("welcome", "deleteAll")
+            addVechicleToContract(DataManager.vehicleId)
+        }
     }
 
-    private fun uploadApiVehicleById(id: Int?) {
+    private fun addVechicleToContract(id: Long?) {
+        Log.d("welcome", "delete")
+        val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
+        val call = serviceGenerator.addVehicleToContractById(DataManager.bearerToken, id)
+        call.enqueue(object : Callback<ContractModel> {
+            override fun onResponse(call: Call<ContractModel>, response: Response<ContractModel>) {
+                if(response.isSuccessful) {
+                    if (response.body() != null) {
+                        Log.d("welcome", response.body().toString())
+
+                    }else{
+                        Log.d("welcome", "empty")
+                    }
+                }
+                addOk(response.code())
+            }
+
+            override fun onFailure(call: Call<ContractModel>, t: Throwable) {
+                Log.d("welcome error", t.message.toString())
+                addOk(404)
+            }
+        })
+    }
+
+    private fun addOk(code: Int) {
+        when (code) {
+            200 -> dialog.showDefaultDialog(this, "The item added to contract!", "Info")
+            400 -> dialog.showDefaultDialog(this, "The item exist in contract!", "Alert")
+            else -> dialog.showDefaultDialog(this, "Add mechanism failed!", "Alert")
+        }
+    }
+
+    private fun uploadAllByVehicleId(id: Long?) {
         val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
         val call = serviceGenerator.getVehicleById(DataManager.bearerToken, id)
         call.enqueue(object : Callback<VehicleModel> {

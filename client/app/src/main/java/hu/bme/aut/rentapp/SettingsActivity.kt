@@ -4,18 +4,17 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import hu.bme.aut.rentapp.api.ApiService
 import hu.bme.aut.rentapp.data.DataManager
 import hu.bme.aut.rentapp.data.ServiceGenerator
 import hu.bme.aut.rentapp.models.*
 import hu.bme.aut.rentapp.validations.Validation
-import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_settings.*
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -70,20 +69,20 @@ class SettingsActivity : AppCompatActivity() {
                 ) {
                     Log.d("welcome", response.isSuccessful.toString())
                     if(response.isSuccessful){
-                        deleteOk(response.code())
+                        deleteNoContent(response.code())
                     }
                 }
 
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                     Log.d("welcome", t.message.toString())
-                    deleteOk(404)
+                    deleteNoContent(404)
                 }
             })
         }
 
     }
 
-    private fun deleteOk(code: Int) {
+    private fun deleteNoContent(code: Int) {
         if(code == 204) {
             DataManager.bearerToken = ""
             dialog.showDefaultDialog(this, "The delete was successful!", "Info")

@@ -22,7 +22,7 @@ public class EmailService {
         logger.info("Email kuldes");
 
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("webshop.alf@gmail.com");
+        message.setFrom("rentapp12345@gmail.com");
         message.setTo(toEmail);
         message.setText(body);
         message.setSubject(subject);

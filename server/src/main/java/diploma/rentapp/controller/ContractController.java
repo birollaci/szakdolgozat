@@ -12,14 +12,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import diploma.rentapp.domain.Contract;
 import diploma.rentapp.domain.User;
+import diploma.rentapp.domain.Vehicle;
 import diploma.rentapp.service.ContractService;
 import diploma.rentapp.service.EmailService;
 import diploma.rentapp.service.UserService;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import javax.validation.ValidationException;
 @RestController
@@ -43,32 +55,74 @@ public class ContractController {
     @GetMapping
     public ResponseEntity<Contract> getContract() {
         Contract contract = getCurrentUserContract();
-        logger.info("Visszateritett contract");
+        logger.info("Get contract");
         return new ResponseEntity<Contract>(contract, HttpStatus.OK);
     }
 
-    @PostMapping("/rent")
-    public ResponseEntity buyContractContent(){
-        try {
-            Contract contract = getCurrentUserContract();
-            logger.info("/rent", contract);
-            userService.buyContractContent(contract);
+    @PostMapping("/rent/{start}/{end}")
+    public ResponseEntity rentContractContent(@PathVariable String start, @PathVariable String end) throws ParseException{
+        
+        Contract contract = getCurrentUserContract();
+        List<Vehicle> vehicles = contract.getVehicles();
+        if(vehicles.size() > 0) {
+            String pattern = "yyyy-MM-dd";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+            Date startDate = simpleDateFormat.parse(start);
+            System.out.println(startDate);
+            Date endDate = simpleDateFormat.parse(end);
+            System.out.println(endDate);
+            
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String username = (String)auth.getPrincipal();
             User user = userService.getUserByUsername(username);
-            emailService.SendSimpleEmail(user.getEmail(), "Rentapp confirmation", "You have successfully rented vehicles!");
+            userService.rentContractContent(contract);
+            // Locale locale = new Locale("hu", "HU");
+            // DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, locale);
+            // String dateStart = dateFormat.format(startDate);
+            // String dateEnd = dateFormat.format(endDate);
+    
+            String vehiclesStr = "\n";
+            long diff = endDate.getTime() - startDate.getTime();
+            long days = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+            long total = 0;
+            for (int i = 0; i < vehicles.size(); i++) {
+                vehiclesStr += (i+1) + ". Vehicle: \n";
+                vehiclesStr += "Name: " + vehicles.get(i).getName() + "\n";
+                vehiclesStr += "Brand: " + vehicles.get(i).getBrand() + "\n";
+                vehiclesStr += "Price/day: " + vehicles.get(i).getPrice() + "\n";
+                vehiclesStr += "Total price: " + vehicles.get(i).getPrice()*days + "\n";
+                vehiclesStr += "Description: " + vehicles.get(i).getName() + "\n";
+                vehiclesStr += "Category: " + vehicles.get(i).getName() + "\n\n";
+                total += vehicles.get(i).getPrice()*days;
+            }
+            vehiclesStr += "\nSum: " + total + "\n";
+            String textMessage = "You have successfully rented vehicles!\n StartDate: " + start
+             + "\n EndDate: " + end + "\n\n Vehicles: " + vehiclesStr;
+            emailService.SendSimpleEmail(user.getEmail(), "Rentapp confirmation", textMessage );
             return ResponseEntity.status(HttpStatus.OK).build();
-        } catch (ValidationException e) {
-            logger.warn(e.getMessage());
-            return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
+        
     }
 
     @PutMapping("/{vehicleId}")
     public ResponseEntity<Contract> addVehicleToContract(@PathVariable Long vehicleId){
         Contract contract = getCurrentUserContract();
-        contract = contractService.addVehicleToContract(contract, vehicleId);
-        return new ResponseEntity<Contract>(contract, HttpStatus.OK);
+        List<Vehicle> vehicles = contract.getVehicles();
+        Boolean idGuard = true;
+        for (int i = 0; i < vehicles.size(); i++) {
+            if(vehicles.get(i).getId() == vehicleId) {
+                idGuard = false;
+            }
+        }
+        if(idGuard) {
+            contract = contractService.addVehicleToContract(contract, vehicleId);
+            return new ResponseEntity<Contract>(contract, HttpStatus.OK);
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        
     }
 
     @DeleteMapping

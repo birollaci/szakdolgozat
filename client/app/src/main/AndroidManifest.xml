@@ -23,9 +23,13 @@
             android:parentActivityName=".LoginActivity"/>
         <activity android:name="hu.bme.aut.rentapp.HomeActivity" />
         <activity android:name="hu.bme.aut.rentapp.CategoryActivity" />
-        <activity android:name="hu.bme.aut.rentapp.SettingsActivity" />
-        <activity android:name="hu.bme.aut.rentapp.DetailsActivity" />
+        <activity android:name="hu.bme.aut.rentapp.SettingsActivity"
+            android:parentActivityName=".HomeActivity"/>
+        <activity android:name="hu.bme.aut.rentapp.DetailsActivity"
+            android:parentActivityName=".CategoryActivity"/>
         <activity android:name="hu.bme.aut.rentapp.ContractActivity" />
+        <activity android:name="hu.bme.aut.rentapp.RentActivity"
+            android:parentActivityName=".ContractActivity"/>
     </application>
 
 </manifest>

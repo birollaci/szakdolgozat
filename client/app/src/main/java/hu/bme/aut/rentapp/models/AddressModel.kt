@@ -1,7 +1,7 @@
 package hu.bme.aut.rentapp.models
 
 data class AddressModel (
-    val id : Int? = null,
+    val id : Long? = null,
     val country : String? = null,
     val county : String? = null,
     val city : String? = null,

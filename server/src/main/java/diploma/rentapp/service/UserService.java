@@ -82,13 +82,15 @@ public class UserService {
         return createUserByRole(user, ERole.ROLE_ADMIN);
     }
 
-    public void buyContractContent(Contract contract) {
+    public void rentContractContent(Contract contract) {
         List<Vehicle> vehicles = contract.getVehicles();
        // contractService.updateContract(contract);
         for (Vehicle product : vehicles) {
             vehicleService.deleteVehicleById(product.getId());
         }
         contract.setVehicles(new ArrayList<Vehicle>());
+        contract.setStartDate(null);
+        contract.setEndDate(null);
         contractService.updateContract(contract, contract);
     }
 

@@ -4,8 +4,6 @@
         android:title="@string/action_to_home" />
     <item android:id="@+id/to_category"
         android:title="@string/action_to_category" />
-    <item android:id="@+id/delete_all"
-        android:title="@string/action_delete_all" />
     <item android:id="@+id/log_out"
         android:title="@string/action_log_out" />
 </menu>

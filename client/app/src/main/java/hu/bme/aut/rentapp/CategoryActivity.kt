@@ -11,18 +11,21 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import hu.bme.aut.rentapp.api.ApiService
 import hu.bme.aut.rentapp.data.DataManager
 import hu.bme.aut.rentapp.data.ServiceGenerator
+import hu.bme.aut.rentapp.models.ContractModel
 import hu.bme.aut.rentapp.models.VehicleModel
 import kotlinx.android.synthetic.main.activity_category.*
-import kotlinx.android.synthetic.main.item.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class CategoryActivity : AppCompatActivity() {
 
-    private lateinit var adapter: Adapter
+    private val dialog: Dialog = Dialog()
+
+    private lateinit var adapter: AdapterCategory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("welcome", "CategoryActivity")
@@ -39,14 +42,14 @@ class CategoryActivity : AppCompatActivity() {
     private fun initRecyclerView() {
         val MainRecyclerView = findViewById<RecyclerView>(R.id.MainRecyclerView)
         MainRecyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = Adapter()
+        adapter = AdapterCategory()
 
         uploadAll(adapter)
 
         MainRecyclerView.adapter = adapter
     }
 
-    private fun uploadAll(adapter: Adapter) {
+    private fun uploadAll(adapter: AdapterCategory) {
         val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
         val call = serviceGenerator.getVehicles(DataManager.bearerToken)
         call.enqueue(object : Callback<MutableList<VehicleModel>> {
@@ -71,7 +74,7 @@ class CategoryActivity : AppCompatActivity() {
         })
     }
 
-    private fun uploadByCategory(adapter: Adapter, category: String) {
+    private fun uploadByCategory(adapter: AdapterCategory, category: String) {
         val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
         val call = serviceGenerator.getVehiclesByCategory(DataManager.bearerToken, category)
         call.enqueue(object : Callback<MutableList<VehicleModel>> {
@@ -96,7 +99,38 @@ class CategoryActivity : AppCompatActivity() {
         })
     }
 
-    inner class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
+    private fun addVechicleToContract(id: Long?) {
+        Log.d("welcome", "delete")
+        val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
+        val call = serviceGenerator.addVehicleToContractById(DataManager.bearerToken, id)
+        call.enqueue(object : Callback<ContractModel> {
+            override fun onResponse(call: Call<ContractModel>, response: Response<ContractModel>) {
+                if(response.isSuccessful) {
+                    if (response.body() != null) {
+                        Log.d("welcome", response.body().toString())
+                    }else{
+                        Log.d("welcome", "empty")
+                    }
+                }
+                addOk(response.code())
+            }
+
+            override fun onFailure(call: Call<ContractModel>, t: Throwable) {
+                Log.d("welcome error", t.message.toString())
+                addOk(404)
+            }
+        })
+    }
+
+    private fun addOk(code: Int) {
+        when (code) {
+            200 -> dialog.showDefaultDialog(this, "The item added to contract!", "Info")
+            400 -> dialog.showDefaultDialog(this, "The item exist in contract!", "Alert")
+            else -> dialog.showDefaultDialog(this, "Add mechanism failed!", "Alert")
+        }
+    }
+
+    inner class AdapterCategory : RecyclerView.Adapter<AdapterCategory.ViewHolder>() {
 
         private val items: MutableList<VehicleModel>
         init {
@@ -124,7 +158,7 @@ class CategoryActivity : AppCompatActivity() {
             }
             holder.itemAdd.setOnClickListener {
                 Log.d("welcome", "itemAdd $position")
-
+                addVechicleToContract(items[position].id)
             }
         }
 
@@ -148,7 +182,7 @@ class CategoryActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val MainRecyclerView = findViewById<RecyclerView>(R.id.MainRecyclerView)
         MainRecyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = Adapter()
+        adapter = AdapterCategory()
 
         return when (item.getItemId()) {
             R.id.category0 -> {

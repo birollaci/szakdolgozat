@@ -40,7 +40,7 @@ public class AdminController {
 
     @GetMapping
     public List<User> getUsers() {
-        logger.info("Visszateritett userek");
+        logger.info("Get users");
         return userService.getUsers();
         
     }
@@ -48,7 +48,7 @@ public class AdminController {
     @PostMapping("/createuser")
     public ResponseEntity<User> createUser(@RequestBody User user){
         user = userService.createUser(user);
-        logger.info("Sikeres user krealas");
+        logger.info("Created user");
         return new ResponseEntity<User>(user, HttpStatus.CREATED);
 
     }
@@ -56,7 +56,7 @@ public class AdminController {
     @PostMapping("/createadmin")
     public ResponseEntity<User> createAdminUser(@RequestBody User adminUser){
         adminUser = userService.createAdminUser(adminUser);
-        logger.info("Sikeres admin krealas");
+        logger.info("Created admin");
 
         return new ResponseEntity<User>(adminUser, HttpStatus.CREATED);
     }
@@ -64,7 +64,7 @@ public class AdminController {
     @GetMapping("/vehicle")
     public ResponseEntity<List<Vehicle>> getVehicles(){
         List<Vehicle> vehicles = vehicleService.getVehicles();
-        logger.info("Visszateritett jarmuek");
+        logger.info("Get vehicles");
         return new ResponseEntity<List<Vehicle>>(vehicles, HttpStatus.OK);
     }
     
@@ -72,17 +72,17 @@ public class AdminController {
     public ResponseEntity<Vehicle> getVehicle(@PathVariable("vehicleId") Long vehicleId){
         Optional<Vehicle> vehicle = vehicleService.getVehicle(vehicleId);
         if(!vehicle.isPresent()){
-            logger.warn("Nincs ilyen jarmu");
+            logger.warn("There is no such vehicle");
             return new ResponseEntity<Vehicle>((Vehicle)null, HttpStatus.NOT_FOUND);
         }
-        logger.info("Van ilyen jarmu");
+        logger.info("There is such a vehicle");
         return new ResponseEntity<Vehicle>(vehicle.get(), HttpStatus.OK);
     }
 
     @PostMapping("/vehicle")
     public ResponseEntity<Vehicle> createVehicle(@RequestBody Vehicle vehicle){
         vehicle = vehicleService.createVehicle(vehicle);
-        logger.info("Sikeresen letrehozodott a jarmu");
+        logger.info("Created a vehicle");
 
         return new ResponseEntity<Vehicle>(vehicle, HttpStatus.CREATED);
     }
@@ -90,7 +90,7 @@ public class AdminController {
     @PutMapping("/vehicle/{vehicleId}")
     public ResponseEntity<Vehicle> deleteVehicle(@PathVariable("vehicleId") Long vehicleId){
         vehicleService.deleteVehicleById(vehicleId);
-        logger.info("Sikeresen torlodott a jarmu");
+        logger.info("Deleted a vehicle");
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

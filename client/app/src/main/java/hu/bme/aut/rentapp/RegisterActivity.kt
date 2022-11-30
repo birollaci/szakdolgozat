@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
+import hu.bme.aut.rentapp.api.ApiService
 import hu.bme.aut.rentapp.data.ServiceGenerator
 import hu.bme.aut.rentapp.models.AddressModelPost
 import hu.bme.aut.rentapp.models.RegisterModel
 import hu.bme.aut.rentapp.validations.Validation
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 import okhttp3.ResponseBody
 import retrofit2.Call

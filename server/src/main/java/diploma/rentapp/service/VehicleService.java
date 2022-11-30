@@ -29,7 +29,7 @@ public class VehicleService {
     }
 
     public List<Vehicle> getVehicles() {
-        logger.info("Visszateritett jarmuvek");
+        logger.info("Get jarmuvek");
 
         return vehicleRepository.findAll();
     }

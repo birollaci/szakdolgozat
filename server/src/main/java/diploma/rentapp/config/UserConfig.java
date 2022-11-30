@@ -62,6 +62,7 @@ public class UserConfig {
                 );
     
                 userService.createAdminUser(admin);
+                logger.info("Test user datas created");
             }
         };
     }

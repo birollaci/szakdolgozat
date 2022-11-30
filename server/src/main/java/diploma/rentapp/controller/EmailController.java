@@ -26,7 +26,7 @@ public class EmailController {
 
     @PostMapping()
     public void sendMail(@RequestBody Email email){
-        logger.info("Email kuldes");
+        logger.info("Email sent");
         emailService.SendSimpleEmail(email.getTarget(), email.getSubject(), email.getBody());
     }
 }

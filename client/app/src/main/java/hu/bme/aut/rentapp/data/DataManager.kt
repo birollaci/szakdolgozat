@@ -7,5 +7,5 @@ object DataManager {
 
     var profileNameText: String? = ""
 
-    var vehicleId: Int? = 0
+    var vehicleId: Long? = 0
 }

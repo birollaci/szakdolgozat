@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical"
+    android:screenOrientation="portrait"
+    tools:context=".CategoryActivity">
+
+    <TextView
+        android:id="@+id/profileName"
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="Profile name"
+        android:textAlignment="textEnd"
+        android:textSize="10pt"
+        tools:ignore="RtlCompat" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:text="Rent Form"
+        android:textSize="16pt" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start date:" />
+
+    <DatePicker
+        android:id="@+id/datePickerStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="End date:" />
+
+    <DatePicker
+        android:id="@+id/datePickerEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false" />
+
+    <Button
+        android:id="@+id/btnRentContract"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="rent" />
+
+</LinearLayout>

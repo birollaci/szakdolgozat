@@ -35,7 +35,7 @@ public class VehicleConfig {
             vehicleService.createVehicle(vehicle6);
             vehicleService.createVehicle(vehicle7);
 
-            logger.info("Sikeresen feltoltodott");
+            logger.info("Test vehicle datas created");
         };
     }
 }

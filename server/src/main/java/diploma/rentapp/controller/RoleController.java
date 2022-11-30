@@ -29,7 +29,7 @@ public class RoleController {
 
     @GetMapping
     public List<Role> getRoles() {
-        logger.info("Visszateritett role-ok");
+        logger.info("Get roles");
         return RoleService.getRoles();
     }
 }

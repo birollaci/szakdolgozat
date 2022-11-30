@@ -5,10 +5,10 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import hu.bme.aut.rentapp.api.ApiService
 import hu.bme.aut.rentapp.data.DataManager
 import hu.bme.aut.rentapp.data.ServiceGenerator
 import hu.bme.aut.rentapp.models.LoginModel
-import kotlinx.android.synthetic.main.activity_category.*
 import kotlinx.android.synthetic.main.activity_login.*
 import okhttp3.ResponseBody
 import retrofit2.Call

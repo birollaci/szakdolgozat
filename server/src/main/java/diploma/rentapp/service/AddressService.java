@@ -23,7 +23,7 @@ public class AddressService {
     }
 
     public List<Address> getAddresses() {
-        logger.info("Visszateritett cimek");
+        logger.info("Get cimek");
         return addressRepository.findAll();
     }
 
