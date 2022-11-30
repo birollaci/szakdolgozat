@@ -2,6 +2,7 @@ package hu.bme.aut.rentapp
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.text.format.DateUtils
 import android.util.Log
 import android.widget.DatePicker
 import androidx.appcompat.app.AppCompatActivity
@@ -53,11 +54,13 @@ class RentActivity : AppCompatActivity() {
         Log.d("welcome", end.toString())
 
         val dateFormatedStart = SimpleDateFormat("yyyy-MM-dd").format(start)
-        Log.d("welcome", dateFormatedStart)
+        val newStartDate : Date = SimpleDateFormat("yyyy-MM-dd").parse(dateFormatedStart)
+        Log.d("welcome", newStartDate.toString())
         val dateFormatedEnd = SimpleDateFormat("yyyy-MM-dd").format(end)
-        Log.d("welcome", dateFormatedEnd)
+        val newEndDate : Date = SimpleDateFormat("yyyy-MM-dd").parse(dateFormatedEnd)
+        Log.d("welcome", newEndDate.toString())
 
-        val cmp: Int = start!!.compareTo(end)
+        val cmp: Int = newStartDate!!.compareTo(newEndDate)
         if(cmp > 0) {
             dialog.showDefaultDialog(this, "Start date is after end date, start date must be smaller than end date!", "Alert")
             return
@@ -67,7 +70,7 @@ class RentActivity : AppCompatActivity() {
             return
         }
 
-        val cmp2: Int = current.compareTo(start)
+        val cmp2: Int = current.compareTo(newStartDate)
 
         if(cmp2 > 0) {
             dialog.showDefaultDialog(this, "Start date is before current date, start date must be greater or equal than current date!", "Alert")

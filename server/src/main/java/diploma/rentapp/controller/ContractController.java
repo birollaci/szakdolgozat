@@ -91,8 +91,8 @@ public class ContractController {
                 vehiclesStr += "Brand: " + vehicles.get(i).getBrand() + "\n";
                 vehiclesStr += "Price/day: " + vehicles.get(i).getPrice() + "\n";
                 vehiclesStr += "Total price: " + vehicles.get(i).getPrice()*days + "\n";
-                vehiclesStr += "Description: " + vehicles.get(i).getName() + "\n";
-                vehiclesStr += "Category: " + vehicles.get(i).getName() + "\n\n";
+                vehiclesStr += "Description: " + vehicles.get(i).getDescription() + "\n";
+                vehiclesStr += "Category: " + vehicles.get(i).getCategory() + "\n\n";
                 total += vehicles.get(i).getPrice()*days;
             }
             vehiclesStr += "\nSum: " + total + "\n";
