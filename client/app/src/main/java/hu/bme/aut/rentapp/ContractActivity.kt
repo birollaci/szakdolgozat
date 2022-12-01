@@ -167,6 +167,11 @@ class ContractActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.itemName.text = items[position].name
+            holder.itemDetails.setOnClickListener {
+                Log.d("welcome", "itemdetails $position")
+                DataManager.vehicleId = items[position].id
+                startActivity(Intent(this@ContractActivity, DetailsActivity::class.java))
+            }
             holder.itemDelete.setOnClickListener {
                 Log.d("welcome", "itemdelete $position")
                 delete(items[position].id)
@@ -179,6 +184,7 @@ class ContractActivity : AppCompatActivity() {
 
         inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             var itemName = itemView.findViewById<TextView>(R.id.item_name_contract)
+            var itemDetails = itemView.findViewById<Button>(R.id.item_button_contract_details)
             var itemDelete = itemView.findViewById<Button>(R.id.item_button_contract)
         }
     }

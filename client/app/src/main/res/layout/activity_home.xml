@@ -26,4 +26,53 @@
         android:text="Home Form"
         android:textSize="16pt" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp">
+        <ImageButton
+            android:id="@+id/btnHomeImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/qr"
+            android:layout_gravity="center">
+
+        </ImageButton>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Entering the vehicle identifier manually: "
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/manualIdentifier"
+            android:layout_width="match_parent"
+            android:layout_height="110px"
+            android:textSize="8pt"
+            android:layout_gravity="center"
+            android:hint="vehicle identifier"/>
+
+        <Button
+            android:id="@+id/btnManualIdentifier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:inputType="number"
+            android:text="Enter" />
+    </LinearLayout>
+
 </LinearLayout>

@@ -53,11 +53,11 @@ class RentActivity : AppCompatActivity() {
         val end = datePickerEnd.getDate()
         Log.d("welcome", end.toString())
 
-        val dateFormatedStart = SimpleDateFormat("yyyy-MM-dd").format(start)
-        val newStartDate : Date = SimpleDateFormat("yyyy-MM-dd").parse(dateFormatedStart)
+        val dateFormatedStart: String = SimpleDateFormat("yyyy-MM-dd").format(start)
+        val newStartDate : Date? = SimpleDateFormat("yyyy-MM-dd").parse(dateFormatedStart)
         Log.d("welcome", newStartDate.toString())
-        val dateFormatedEnd = SimpleDateFormat("yyyy-MM-dd").format(end)
-        val newEndDate : Date = SimpleDateFormat("yyyy-MM-dd").parse(dateFormatedEnd)
+        val dateFormatedEnd: String = SimpleDateFormat("yyyy-MM-dd").format(end)
+        val newEndDate : Date? = SimpleDateFormat("yyyy-MM-dd").parse(dateFormatedEnd)
         Log.d("welcome", newEndDate.toString())
 
         val cmp: Int = newStartDate!!.compareTo(newEndDate)
@@ -70,7 +70,11 @@ class RentActivity : AppCompatActivity() {
             return
         }
 
-        val cmp2: Int = current.compareTo(newStartDate)
+        val dateFormatedCurrent: String = SimpleDateFormat("yyyy-MM-dd").format(current)
+        val newCurrentDate : Date? = SimpleDateFormat("yyyy-MM-dd").parse(dateFormatedCurrent)
+        Log.d("welcome", newCurrentDate.toString())
+
+        val cmp2: Int = newCurrentDate!!.compareTo(newStartDate)
 
         if(cmp2 > 0) {
             dialog.showDefaultDialog(this, "Start date is before current date, start date must be greater or equal than current date!", "Alert")
