@@ -16,3 +16,5 @@ Kliens:
 - A gradle projektépítő eszközt választottam.
 - Kapcsolatfelvételhez a szerverrel OkHttp3-at és retrofit2-t használok.
 - A fejlesztőkörnyezetnek Android Studio-t használok.
+
+A futtatás Android studio - ban való megnyitás után lehetséges emulátor, vagy egy fizikai készülék használatával. 
