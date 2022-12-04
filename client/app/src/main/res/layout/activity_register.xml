@@ -6,7 +6,7 @@
     android:layout_margin="16dp"
     android:orientation="vertical"
     android:screenOrientation="portrait"
-    tools:context=".RegisterActivity">
+    tools:context=".activity.RegisterActivity">
 
     <TextView
         android:layout_width="wrap_content"

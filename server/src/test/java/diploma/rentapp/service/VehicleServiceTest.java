@@ -26,14 +26,14 @@ public class VehicleServiceTest {
         "Ferrari 458",
         "Ferrari",
         2000,
-        "valami leiras",
+        "Leiras Auto",
         ECategory.CAR
     );
     private Vehicle vehicle2 = new Vehicle(
         "Roller Freestyle",
         "Raven",
         200,
-        "valami leiras ami jo",
+        "Leiras roller",
         ECategory.ROLLER
     );
 

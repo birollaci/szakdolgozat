@@ -1,4 +1,4 @@
-package hu.bme.aut.rentapp
+package hu.bme.aut.rentapp.activity
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
+import hu.bme.aut.rentapp.Dialog
+import hu.bme.aut.rentapp.R
 import hu.bme.aut.rentapp.api.ApiService
-import hu.bme.aut.rentapp.data.ServiceGenerator
+import hu.bme.aut.rentapp.service.ServiceGenerator
 import hu.bme.aut.rentapp.models.AddressModelPost
 import hu.bme.aut.rentapp.models.RegisterModel
 import hu.bme.aut.rentapp.validations.Validation

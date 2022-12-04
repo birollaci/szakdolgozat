@@ -76,10 +76,6 @@ public class ContractController {
             String username = (String)auth.getPrincipal();
             User user = userService.getUserByUsername(username);
             userService.rentContractContent(contract);
-            // Locale locale = new Locale("hu", "HU");
-            // DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, locale);
-            // String dateStart = dateFormat.format(startDate);
-            // String dateEnd = dateFormat.format(endDate);
     
             String vehiclesStr = "\n";
             long diff = endDate.getTime() - startDate.getTime();

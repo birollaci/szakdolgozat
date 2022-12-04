@@ -34,7 +34,7 @@ public class RoleService {
 
     public Role createRole(Role role) throws EntityExistsException {
         if(roleRepository.existsByName(role.getName())){
-            logger.warn("Mar letezik");
+            logger.warn("Role already exists!");
             throw new EntityExistsException(String.format("Role %s already exists, creation aborted", role.getName()));
         }
         return roleRepository.save(role);

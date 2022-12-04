@@ -29,7 +29,7 @@ public class ContractService {
     }
 
     public List<Contract> getContracts() {
-        logger.info("Get szerzodesek");
+        logger.info("Get contracts");
 
         return contractRepository.findAll();
     }

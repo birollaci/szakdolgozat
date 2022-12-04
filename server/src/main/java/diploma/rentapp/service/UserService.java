@@ -68,7 +68,7 @@ public class UserService {
     public User getUserByUsername(String username){
         Optional<User> user = userRepository.findByUsername(username);
         if(!user.isPresent()){
-            logger.warn("Mar letezik ilyen");
+            logger.warn("Already exists");
             throw new EntityNotFoundException(String.format("User with username %s does not exist in database", username));
         }
         return user.get();

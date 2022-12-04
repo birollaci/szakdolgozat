@@ -36,6 +36,7 @@ public class VehicleConfig {
             vehicleService.createVehicle(vehicle7);
 
             logger.info("Test vehicle datas created");
+            logger.info("The server has started");
         };
     }
 }

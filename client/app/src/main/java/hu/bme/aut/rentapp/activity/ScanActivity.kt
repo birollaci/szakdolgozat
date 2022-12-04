@@ -1,8 +1,6 @@
-package hu.bme.aut.rentapp
+package hu.bme.aut.rentapp.activity
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.DialogInterface
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -11,7 +9,6 @@ import android.view.SurfaceHolder
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -19,17 +16,16 @@ import com.google.android.gms.vision.CameraSource
 import com.google.android.gms.vision.Detector
 import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
+import hu.bme.aut.rentapp.R
 import hu.bme.aut.rentapp.api.ApiService
 import hu.bme.aut.rentapp.data.DataManager
-import hu.bme.aut.rentapp.data.ServiceGenerator
+import hu.bme.aut.rentapp.service.ServiceGenerator
 import hu.bme.aut.rentapp.databinding.ActivityScanBinding
 import hu.bme.aut.rentapp.models.ContractModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.IOException
-import java.util.*
-import kotlin.concurrent.schedule
 
 class ScanActivity : AppCompatActivity() {
 

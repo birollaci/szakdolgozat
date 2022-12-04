@@ -6,7 +6,7 @@
     android:layout_margin="16dp"
     android:orientation="vertical"
     android:screenOrientation="portrait"
-    tools:context=".CategoryActivity">
+    tools:context=".activity.CategoryActivity">
 
     <TextView
         android:id="@+id/profileName"

@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme"
         android:screenOrientation="portrait">
         <activity
-            android:name="hu.bme.aut.rentapp.LoginActivity"
+            android:name="hu.bme.aut.rentapp.activity.LoginActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,19 +23,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="hu.bme.aut.rentapp.RegisterActivity"
-            android:parentActivityName=".LoginActivity"/>
-        <activity android:name="hu.bme.aut.rentapp.HomeActivity" />
-        <activity android:name="hu.bme.aut.rentapp.CategoryActivity" />
-        <activity android:name="hu.bme.aut.rentapp.SettingsActivity"
-            android:parentActivityName=".HomeActivity"/>
-        <activity android:name="hu.bme.aut.rentapp.DetailsActivity"
-            android:parentActivityName=".CategoryActivity"/>
-        <activity android:name="hu.bme.aut.rentapp.ContractActivity" />
-        <activity android:name="hu.bme.aut.rentapp.RentActivity"
-            android:parentActivityName=".ContractActivity"/>
-        <activity android:name="hu.bme.aut.rentapp.ScanActivity"
-            android:parentActivityName=".HomeActivity"/>
+        <activity android:name="hu.bme.aut.rentapp.activity.RegisterActivity"
+            android:parentActivityName=".activity.LoginActivity"/>
+        <activity android:name="hu.bme.aut.rentapp.activity.HomeActivity" />
+        <activity android:name="hu.bme.aut.rentapp.activity.CategoryActivity" />
+        <activity android:name="hu.bme.aut.rentapp.activity.SettingsActivity"
+            android:parentActivityName=".activity.HomeActivity"/>
+        <activity android:name="hu.bme.aut.rentapp.activity.DetailsActivity"
+            android:parentActivityName=".activity.CategoryActivity"/>
+        <activity android:name="hu.bme.aut.rentapp.activity.ContractActivity" />
+        <activity android:name="hu.bme.aut.rentapp.activity.RentActivity"
+            android:parentActivityName=".activity.ContractActivity"/>
+        <activity android:name="hu.bme.aut.rentapp.activity.ScanActivity"
+            android:parentActivityName=".activity.HomeActivity"/>
     </application>
 
 </manifest>

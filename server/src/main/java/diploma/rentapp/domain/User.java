@@ -17,43 +17,32 @@ uniqueConstraints = {
     @UniqueConstraint(columnNames = "email") 
 })
 public class User {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
 	@NotBlank
 	@Size(min= 3, max = 24)
 	private String username;
-
 	@NotBlank
 	@Password
 	private String password;
-
 	@NotBlank
 	@Email
 	private String email;
-
 	@NotBlank
 	private String firstName;
-	
 	@NotBlank
 	private String lastName;
-	
     @NotBlank
     private String phoneNumber;
-
     @NotNull
     @OneToOne
     private Address homeAddress;
-
 	@OneToOne
     private Address billingAddress;
-
 	@NotNull
 	@OneToOne
 	private Contract contract;
-
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(	name = "user_roles", 
 				joinColumns = @JoinColumn(name = "user_id"), 

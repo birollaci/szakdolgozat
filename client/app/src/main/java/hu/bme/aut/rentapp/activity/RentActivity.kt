@@ -1,30 +1,23 @@
-package hu.bme.aut.rentapp
+package hu.bme.aut.rentapp.activity
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.text.format.DateUtils
 import android.util.Log
 import android.widget.DatePicker
 import androidx.appcompat.app.AppCompatActivity
+import hu.bme.aut.rentapp.Dialog
+import hu.bme.aut.rentapp.R
 import hu.bme.aut.rentapp.api.ApiService
 import hu.bme.aut.rentapp.data.DataManager
-import hu.bme.aut.rentapp.data.ServiceGenerator
-import hu.bme.aut.rentapp.models.ContractModelPost
-import hu.bme.aut.rentapp.models.LoginModel
-import hu.bme.aut.rentapp.models.VehicleModel
-import kotlinx.android.synthetic.main.activity_contract.*
-import kotlinx.android.synthetic.main.activity_home.*
+import hu.bme.aut.rentapp.service.ServiceGenerator
 import kotlinx.android.synthetic.main.activity_home.profileName
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_rent.*
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.*
-import kotlin.collections.ArrayList
 
 class RentActivity : AppCompatActivity() {
 

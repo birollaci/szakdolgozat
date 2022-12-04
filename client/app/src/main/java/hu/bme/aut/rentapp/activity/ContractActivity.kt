@@ -1,4 +1,4 @@
-package hu.bme.aut.rentapp
+package hu.bme.aut.rentapp.activity
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -11,21 +11,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import hu.bme.aut.rentapp.*
 import hu.bme.aut.rentapp.api.ApiService
 import hu.bme.aut.rentapp.data.DataManager
-import hu.bme.aut.rentapp.data.ServiceGenerator
+import hu.bme.aut.rentapp.service.ServiceGenerator
 import hu.bme.aut.rentapp.models.ContractModel
-import hu.bme.aut.rentapp.models.ContractModelPost
-import hu.bme.aut.rentapp.models.LoginModel
 import hu.bme.aut.rentapp.models.VehicleModel
 import kotlinx.android.synthetic.main.activity_contract.*
-import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_home.profileName
-import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
 import kotlin.collections.ArrayList
 
 class ContractActivity : AppCompatActivity() {

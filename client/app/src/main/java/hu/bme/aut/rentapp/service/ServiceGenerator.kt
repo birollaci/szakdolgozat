@@ -1,4 +1,4 @@
-package hu.bme.aut.rentapp.data
+package hu.bme.aut.rentapp.service
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient

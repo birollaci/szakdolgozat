@@ -1,13 +1,15 @@
-package hu.bme.aut.rentapp
+package hu.bme.aut.rentapp.activity
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import hu.bme.aut.rentapp.Dialog
+import hu.bme.aut.rentapp.R
 import hu.bme.aut.rentapp.api.ApiService
 import hu.bme.aut.rentapp.data.DataManager
-import hu.bme.aut.rentapp.data.ServiceGenerator
+import hu.bme.aut.rentapp.service.ServiceGenerator
 import hu.bme.aut.rentapp.models.LoginModel
 import kotlinx.android.synthetic.main.activity_login.*
 import okhttp3.ResponseBody
