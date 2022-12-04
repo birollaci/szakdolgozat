@@ -2,12 +2,15 @@ package hu.bme.aut.rentapp.activity
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import hu.bme.aut.rentapp.*
 import hu.bme.aut.rentapp.api.ApiService
 import hu.bme.aut.rentapp.data.DataManager
@@ -28,6 +31,15 @@ class HomeActivity : AppCompatActivity() {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
         profileName.text = DataManager.profileNameText
+
+        if (ContextCompat.checkSelfPermission(this@HomeActivity, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                this@HomeActivity,
+                arrayOf(android.Manifest.permission.CAMERA),
+                1001
+            )
+        }
+
         btnHomeImage.setOnClickListener {
             goTosScan()
         }
