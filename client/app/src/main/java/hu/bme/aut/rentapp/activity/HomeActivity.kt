@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import hu.bme.aut.rentapp.*
-import hu.bme.aut.rentapp.api.ApiService
+import hu.bme.aut.rentapp.service.ApiService
 import hu.bme.aut.rentapp.data.DataManager
 import hu.bme.aut.rentapp.service.ServiceGenerator
 import hu.bme.aut.rentapp.models.ContractModel

@@ -17,7 +17,7 @@ import com.google.android.gms.vision.Detector
 import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
 import hu.bme.aut.rentapp.R
-import hu.bme.aut.rentapp.api.ApiService
+import hu.bme.aut.rentapp.service.ApiService
 import hu.bme.aut.rentapp.data.DataManager
 import hu.bme.aut.rentapp.service.ServiceGenerator
 import hu.bme.aut.rentapp.databinding.ActivityScanBinding

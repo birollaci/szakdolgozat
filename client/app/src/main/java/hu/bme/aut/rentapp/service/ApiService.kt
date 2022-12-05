@@ -1,4 +1,4 @@
-package hu.bme.aut.rentapp.api
+package hu.bme.aut.rentapp.service
 
 import hu.bme.aut.rentapp.models.*
 import okhttp3.ResponseBody
