@@ -36,7 +36,7 @@ class ScanActivity : AppCompatActivity() {
     private lateinit var binding: ActivityScanBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("welcome", "ScanActivity")
+        Log.d("rentapp", "ScanActivity")
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
@@ -159,17 +159,17 @@ class ScanActivity : AppCompatActivity() {
     }
 
     private fun addVechicleToContract(id: Long?) {
-        Log.d("welcome", "delete")
+        Log.d("rentapp", "delete")
         val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
         val call = serviceGenerator.addVehicleToContractById(DataManager.bearerToken, id)
         call.enqueue(object : Callback<ContractModel> {
             override fun onResponse(call: Call<ContractModel>, response: Response<ContractModel>) {
                 if(response.isSuccessful) {
                     if (response.body() != null) {
-                        Log.d("welcome", response.body().toString())
+                        Log.d("rentapp", response.body().toString())
 
                     }else{
-                        Log.d("welcome", "empty")
+                        Log.d("rentapp", "empty")
                     }
                 }
                 addOk(response.code(), id)

@@ -28,7 +28,7 @@ class SettingsActivity : AppCompatActivity() {
     val dialog: Dialog = Dialog()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("welcome", "SettingsActivity")
+        Log.d("rentapp", "SettingsActivity")
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
@@ -42,10 +42,10 @@ class SettingsActivity : AppCompatActivity() {
             override fun onResponse(call: Call<UserModel>, response: Response<UserModel>) {
                 if(response.isSuccessful) {
                     if (response.body() != null) {
-                        Log.d("welcome", response.body().toString())
+                        Log.d("rentapp", response.body().toString())
                         uploadSettings(response.body()!!)
                     }else{
-                        Log.d("welcome", "empty")
+                        Log.d("rentapp", "empty")
                     }
                 }
             }
@@ -56,12 +56,12 @@ class SettingsActivity : AppCompatActivity() {
         })
 
         btnSettingsUpdate.setOnClickListener {
-            Log.d("welcome", "update")
+            Log.d("rentapp", "update")
             updateUser()
         }
 
         btnSettingsDelete.setOnClickListener {
-            Log.d("welcome", "delete")
+            Log.d("rentapp", "delete")
             val deleteCall = serviceGenerator.deleteUser(DataManager.bearerToken)
 
             deleteCall.enqueue(object : Callback<ResponseBody> {
@@ -69,14 +69,14 @@ class SettingsActivity : AppCompatActivity() {
                     call: Call<ResponseBody>,
                     response: Response<ResponseBody>
                 ) {
-                    Log.d("welcome", response.isSuccessful.toString())
+                    Log.d("rentapp", response.isSuccessful.toString())
                     if(response.isSuccessful){
                         deleteNoContent(response.code())
                     }
                 }
 
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                    Log.d("welcome", t.message.toString())
+                    Log.d("rentapp", t.message.toString())
                     deleteNoContent(404)
                 }
             })
@@ -190,7 +190,7 @@ class SettingsActivity : AppCompatActivity() {
                     homeAddress = homeAddressExternal,
                     billingAddress = billingAddressExternal
                 )
-                Log.d("welcome", userModelPost.toString())
+                Log.d("rentapp", userModelPost.toString())
                 call = serviceGenerator.updateUser(
                     DataManager.bearerToken,
                     userModelPost
@@ -206,7 +206,7 @@ class SettingsActivity : AppCompatActivity() {
                     homeAddress = homeAddressExternal,
                     billingAddress = null
                 )
-                Log.d("welcome", userModelPost.toString())
+                Log.d("rentapp", userModelPost.toString())
                 call = serviceGenerator.updateUser(
                     DataManager.bearerToken,
                     userModelPost
@@ -218,14 +218,14 @@ class SettingsActivity : AppCompatActivity() {
                     call: Call<UserModel>,
                     response: Response<UserModel>
                 ) {
-                    Log.d("welcome", "ok")
-                    Log.d("welcome", response.code().toString()) // http status code (200)
-                    Log.d("welcome", response.body().toString())
+                    Log.d("rentapp", "ok")
+                    Log.d("rentapp", response.code().toString()) // http status code (200)
+                    Log.d("rentapp", response.body().toString())
                     updateSuccess(response.code())
                 }
 
                 override fun onFailure(call: Call<UserModel>, t: Throwable) {
-                    Log.d("welcome", t.message.toString())
+                    Log.d("rentapp", t.message.toString())
                 }
 
             })
@@ -266,7 +266,7 @@ class SettingsActivity : AppCompatActivity() {
         numberSettingsBilling.setText(billingAddress?.number, TextView.BufferType.EDITABLE)
         doorSettingsBilling.setText(billingAddress?.door, TextView.BufferType.EDITABLE)
 
-        Log.d("welcome", "Settings Uploaded from /user")
+        Log.d("rentapp", "Settings Uploaded from /user")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

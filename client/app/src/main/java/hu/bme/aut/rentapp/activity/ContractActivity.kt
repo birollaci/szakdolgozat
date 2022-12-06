@@ -31,7 +31,7 @@ class ContractActivity : AppCompatActivity() {
     private lateinit var adapter: AdapterContract
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("welcome", "Contract")
+        Log.d("rentapp", "Contract")
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contract)
@@ -42,12 +42,12 @@ class ContractActivity : AppCompatActivity() {
         initRecyclerViewContract()
 
         btnDeleteAll.setOnClickListener {
-            Log.d("welcome", "deleteAll")
+            Log.d("rentapp", "deleteAll")
             deleteAll()
         }
 
         btnToRent.setOnClickListener {
-            Log.d("welcome", "to rent")
+            Log.d("rentapp", "to rent")
             startActivity(Intent(this, RentActivity::class.java))
         }
     }
@@ -62,11 +62,11 @@ class ContractActivity : AppCompatActivity() {
             ) {
                 if(response.isSuccessful) {
                     if (response.body() != null) {
-                        Log.d("welcome", response.body().toString())
+                        Log.d("rentapp", response.body().toString())
                         deleteOk(response.code())
                         initRecyclerViewContract()
                     }else{
-                        Log.d("welcome", "empty")
+                        Log.d("rentapp", "empty")
                     }
                 }
             }
@@ -103,7 +103,7 @@ class ContractActivity : AppCompatActivity() {
                             adapter.add(item)
                         }
                     }else{
-                        Log.d("welcome", "empty")
+                        Log.d("rentapp", "empty")
                     }
                 }
             }
@@ -115,17 +115,17 @@ class ContractActivity : AppCompatActivity() {
     }
 
     private fun delete(id: Long?) {
-        Log.d("welcome", "delete")
+        Log.d("rentapp", "delete")
         val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
         val call = serviceGenerator.deleteVehicleFromContractById(DataManager.bearerToken, id)
         call.enqueue(object : Callback<ContractModel> {
             override fun onResponse(call: Call<ContractModel>, response: Response<ContractModel>) {
                 if(response.isSuccessful) {
                     if (response.body() != null) {
-                        Log.d("welcome", response.body().toString())
+                        Log.d("rentapp", response.body().toString())
                         deleteOk(response.code())
                     }else{
-                        Log.d("welcome", "empty")
+                        Log.d("rentapp", "empty")
                     }
                 }
             }
@@ -165,12 +165,12 @@ class ContractActivity : AppCompatActivity() {
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.itemName.text = items[position].name
             holder.itemDetails.setOnClickListener {
-                Log.d("welcome", "itemdetails $position")
+                Log.d("rentapp", "itemdetails $position")
                 DataManager.vehicleId = items[position].id
                 startActivity(Intent(this@ContractActivity, DetailsActivity::class.java))
             }
             holder.itemDelete.setOnClickListener {
-                Log.d("welcome", "itemdelete $position")
+                Log.d("rentapp", "itemdelete $position")
                 delete(items[position].id)
             }
         }

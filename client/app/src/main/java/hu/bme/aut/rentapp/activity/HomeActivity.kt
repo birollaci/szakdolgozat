@@ -24,7 +24,7 @@ import retrofit2.Response
 class HomeActivity : AppCompatActivity() {
     private val dialog: Dialog = Dialog()
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("welcome", "HomeActivity")
+        Log.d("rentapp", "HomeActivity")
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -52,17 +52,17 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun addVechicleToContract(id: Long?) {
-        Log.d("welcome", "delete")
+        Log.d("rentapp", "delete")
         val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
         val call = serviceGenerator.addVehicleToContractById(DataManager.bearerToken, id)
         call.enqueue(object : Callback<ContractModel> {
             override fun onResponse(call: Call<ContractModel>, response: Response<ContractModel>) {
                 if(response.isSuccessful) {
                     if (response.body() != null) {
-                        Log.d("welcome", response.body().toString())
+                        Log.d("rentapp", response.body().toString())
 
                     }else{
-                        Log.d("welcome", "empty")
+                        Log.d("rentapp", "empty")
                     }
                 }
                 addOk(response.code())

@@ -25,7 +25,7 @@ class DetailsActivity : AppCompatActivity() {
     private val dialog: Dialog = Dialog()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("welcome", "Details")
+        Log.d("rentapp", "Details")
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
@@ -36,23 +36,23 @@ class DetailsActivity : AppCompatActivity() {
         uploadAllByVehicleId(DataManager.vehicleId)
 
         btnDetailsAdd.setOnClickListener {
-            Log.d("welcome", "deleteAll")
+            Log.d("rentapp", "deleteAll")
             addVechicleToContract(DataManager.vehicleId)
         }
     }
 
     private fun addVechicleToContract(id: Long?) {
-        Log.d("welcome", "delete")
+        Log.d("rentapp", "delete")
         val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
         val call = serviceGenerator.addVehicleToContractById(DataManager.bearerToken, id)
         call.enqueue(object : Callback<ContractModel> {
             override fun onResponse(call: Call<ContractModel>, response: Response<ContractModel>) {
                 if(response.isSuccessful) {
                     if (response.body() != null) {
-                        Log.d("welcome", response.body().toString())
+                        Log.d("rentapp", response.body().toString())
 
                     }else{
-                        Log.d("welcome", "empty")
+                        Log.d("rentapp", "empty")
                     }
                 }
                 addOk(response.code())
@@ -83,10 +83,10 @@ class DetailsActivity : AppCompatActivity() {
             ) {
                 if(response.isSuccessful) {
                     if (response.body() != null) {
-                        Log.d("welcome", response.body().toString())
+                        Log.d("rentapp", response.body().toString())
                         uploadDetails(response.body()!!)
                     }else{
-                        Log.d("welcome", "empty")
+                        Log.d("rentapp", "empty")
                     }
                 }
             }

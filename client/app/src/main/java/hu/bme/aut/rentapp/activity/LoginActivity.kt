@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
     val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("welcome", "LoginActivity")
+        Log.d("rentapp", "LoginActivity")
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -44,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun login() {
-        Log.d("welcome", "login")
+        Log.d("rentapp", "login")
 
         if (username.text.toString().isEmpty()) {
             username.requestFocus()
@@ -69,12 +69,12 @@ class LoginActivity : AppCompatActivity() {
                 ) {
                     if(response.isSuccessful) {
                         if (response.body() != null) {
-                            Log.d("welcome", "ok")
+                            Log.d("rentapp", "ok")
                             gotoHome(response.code())
                             DataManager.bearerToken = response.headers().get("Authorization").toString()
                             DataManager.profileNameText = username.text.toString()
                         } else {
-                            Log.d("welcome", "empty")
+                            Log.d("rentapp", "empty")
                         }
                     }
                 }
@@ -95,29 +95,29 @@ class LoginActivity : AppCompatActivity() {
                 call: Call<ResponseBody>,
                 response: Response<ResponseBody>
             ) {
-                Log.d("welcome", response.isSuccessful.toString())
+                Log.d("rentapp", response.isSuccessful.toString())
                 if(response.isSuccessful){
                     if (response.body() != null) {
                         val s = response.body()!!.string().toString()
-                        Log.d("welcome", "ok")
-                        Log.d("welcome", s)
-                        Log.d("welcome", response.body().toString())
+                        Log.d("rentapp", "ok")
+                        Log.d("rentapp", s)
+                        Log.d("rentapp", response.body().toString())
                         connectionOk(response.code())
                     }else{
-                        Log.d("welcome", "empty")
+                        Log.d("rentapp", "empty")
                     }
                 }
             }
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Log.d("welcome", t.message.toString())
+                Log.d("rentapp", t.message.toString())
                 connectionOk(404)
             }
         })
     }
 
     fun gotoHome(loginHttpStatus : Int){
-        Log.d("welcome", loginHttpStatus.toString())
+        Log.d("rentapp", loginHttpStatus.toString())
         if(loginHttpStatus == 200)
             startActivity(Intent(this, HomeActivity::class.java))
         else

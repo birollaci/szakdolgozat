@@ -30,10 +30,10 @@ class RegisterActivity : AppCompatActivity() {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        Log.d("welcome", "RegisterActivity")
+        Log.d("rentapp", "RegisterActivity")
 
         btnRegisterSave.setOnClickListener {
-            Log.d("welcome", "register")
+            Log.d("rentapp", "register")
 
             saveRegister()
         }
@@ -145,7 +145,7 @@ class RegisterActivity : AppCompatActivity() {
                     homeAddress = homeAddressExternal,
                     billingAddress = billingAddressExternal
                 )
-                Log.d("welcome", registerModel.toString())
+                Log.d("rentapp", registerModel.toString())
                 call = serviceGenerator.postRegister(
                     registerModel
                 )
@@ -160,7 +160,7 @@ class RegisterActivity : AppCompatActivity() {
                     homeAddress = homeAddressExternal,
                     billingAddress = null
                 )
-                Log.d("welcome", registerModel.toString())
+                Log.d("rentapp", registerModel.toString())
                 call = serviceGenerator.postRegister(
                     registerModel
                 )
@@ -171,14 +171,14 @@ class RegisterActivity : AppCompatActivity() {
                     call: Call<ResponseBody>,
                     response: Response<ResponseBody>
                 ) {
-                    Log.d("welcome", "ok")
-                    Log.d("welcome", response.code().toString()) // http status code (200)
-                    Log.d("welcome", response.body().toString())
+                    Log.d("rentapp", "ok")
+                    Log.d("rentapp", response.code().toString()) // http status code (200)
+                    Log.d("rentapp", response.body().toString())
                     goToLogin(response.code())
                 }
 
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                    Log.d("welcome", t.message.toString())
+                    Log.d("rentapp", t.message.toString())
                 }
 
             })

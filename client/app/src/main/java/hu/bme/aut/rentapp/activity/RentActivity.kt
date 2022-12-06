@@ -24,7 +24,7 @@ class RentActivity : AppCompatActivity() {
     private val dialog: Dialog = Dialog()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("welcome", "Contract")
+        Log.d("rentapp", "Contract")
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rent)
@@ -33,25 +33,25 @@ class RentActivity : AppCompatActivity() {
         profileName.text = DataManager.profileNameText
 
         btnRentContract.setOnClickListener {
-            Log.d("welcome", "rent")
+            Log.d("rentapp", "rent")
             rentContract()
         }
     }
 
     private fun rentContract() {
         val current = Date()
-        Log.d("welcome", current.toString())
+        Log.d("rentapp", current.toString())
         val start = datePickerStart.getDate()
-        Log.d("welcome", start.toString())
+        Log.d("rentapp", start.toString())
         val end = datePickerEnd.getDate()
-        Log.d("welcome", end.toString())
+        Log.d("rentapp", end.toString())
 
         val dateFormatedStart: String = SimpleDateFormat("yyyy-MM-dd").format(start)
         val newStartDate : Date? = SimpleDateFormat("yyyy-MM-dd").parse(dateFormatedStart)
-        Log.d("welcome", newStartDate.toString())
+        Log.d("rentapp", newStartDate.toString())
         val dateFormatedEnd: String = SimpleDateFormat("yyyy-MM-dd").format(end)
         val newEndDate : Date? = SimpleDateFormat("yyyy-MM-dd").parse(dateFormatedEnd)
-        Log.d("welcome", newEndDate.toString())
+        Log.d("rentapp", newEndDate.toString())
 
         val cmp: Int = newStartDate!!.compareTo(newEndDate)
         if(cmp > 0) {
@@ -65,7 +65,7 @@ class RentActivity : AppCompatActivity() {
 
         val dateFormatedCurrent: String = SimpleDateFormat("yyyy-MM-dd").format(current)
         val newCurrentDate : Date? = SimpleDateFormat("yyyy-MM-dd").parse(dateFormatedCurrent)
-        Log.d("welcome", newCurrentDate.toString())
+        Log.d("rentapp", newCurrentDate.toString())
 
         val cmp2: Int = newCurrentDate!!.compareTo(newStartDate)
 
@@ -79,7 +79,7 @@ class RentActivity : AppCompatActivity() {
         call.enqueue(object: Callback<ResponseBody>{
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if(response.isSuccessful) {
-                    Log.d("welcome", response.toString())
+                    Log.d("rentapp", response.toString())
                 }
                 rentOk(response.code())
             }

@@ -30,7 +30,7 @@ class CategoryActivity : AppCompatActivity() {
     private lateinit var adapter: AdapterCategory
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("welcome", "CategoryActivity")
+        Log.d("rentapp", "CategoryActivity")
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
@@ -65,7 +65,7 @@ class CategoryActivity : AppCompatActivity() {
                             adapter.add(item)
                         }
                     }else{
-                        Log.d("welcome", "empty")
+                        Log.d("rentapp", "empty")
                     }
                 }
             }
@@ -90,7 +90,7 @@ class CategoryActivity : AppCompatActivity() {
                             adapter.add(item)
                         }
                     }else{
-                        Log.d("welcome", "empty")
+                        Log.d("rentapp", "empty")
                     }
                 }
             }
@@ -102,16 +102,16 @@ class CategoryActivity : AppCompatActivity() {
     }
 
     private fun addVechicleToContract(id: Long?) {
-        Log.d("welcome", "delete")
+        Log.d("rentapp", "delete")
         val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
         val call = serviceGenerator.addVehicleToContractById(DataManager.bearerToken, id)
         call.enqueue(object : Callback<ContractModel> {
             override fun onResponse(call: Call<ContractModel>, response: Response<ContractModel>) {
                 if(response.isSuccessful) {
                     if (response.body() != null) {
-                        Log.d("welcome", response.body().toString())
+                        Log.d("rentapp", response.body().toString())
                     }else{
-                        Log.d("welcome", "empty")
+                        Log.d("rentapp", "empty")
                     }
                 }
                 addOk(response.code())
@@ -154,12 +154,12 @@ class CategoryActivity : AppCompatActivity() {
             holder.itemId.text = items[position].id.toString()
             holder.itemName.text = items[position].name
             holder.itemDetails.setOnClickListener {
-                Log.d("welcome", "item $position")
+                Log.d("rentapp", "item $position")
                 DataManager.vehicleId = items[position].id
                 startActivity(Intent(this@CategoryActivity, DetailsActivity::class.java))
             }
             holder.itemAdd.setOnClickListener {
-                Log.d("welcome", "itemAdd $position")
+                Log.d("rentapp", "itemAdd $position")
                 addVechicleToContract(items[position].id)
             }
         }
