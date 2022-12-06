@@ -64,6 +64,7 @@ class ContractActivity : AppCompatActivity() {
                     if (response.body() != null) {
                         Log.d("welcome", response.body().toString())
                         deleteOk(response.code())
+                        initRecyclerViewContract()
                     }else{
                         Log.d("welcome", "empty")
                     }

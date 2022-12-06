@@ -40,7 +40,7 @@ public class UserConfig {
                     "admin",
                     "Laci",
                     "Bíró",
-                    "admin@webshop.hu",
+                    "birollaci@gmail.com",
                     "0036301234567",
                     new Address("Country", "county", "city", "zipCode", "streetName", "1", "door"),
                     null
@@ -55,7 +55,7 @@ public class UserConfig {
                     "user",
                     "Elek",
                     "Teszt",
-                    "test@test.hu",
+                    "birolaszlo@edu.bme.hu",
                     "003612346798",
                     new Address("CountryTest", "countytest", "citytest", "zipCodetest", "streetNametest", "2", "doortest"),
                     null

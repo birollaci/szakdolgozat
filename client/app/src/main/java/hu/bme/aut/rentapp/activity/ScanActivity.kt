@@ -183,7 +183,7 @@ class ScanActivity : AppCompatActivity() {
     }
     private fun addOk(code: Int, id: Long?) {
         when (code) {
-            200 -> Toast.makeText(this@ScanActivity, "The item added to contract!", Toast.LENGTH_LONG).show()
+            200 -> Toast.makeText(this@ScanActivity, "The item with identifier $id added to contract!", Toast.LENGTH_LONG).show()
             400 -> Toast.makeText(this@ScanActivity, "The item with identifier $id exist in contract!", Toast.LENGTH_LONG).show()
             else -> Toast.makeText(this@ScanActivity, "Scanned value: $id\nScanned identifier not found!", Toast.LENGTH_LONG).show()
         }
