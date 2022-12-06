@@ -19,7 +19,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	implementation 'org.hsqldb:hsqldb'
+	// implementation 'org.hsqldb:hsqldb'
+	implementation 'mysql:mysql-connector-java'
 	implementation 'org.passay:passay:1.6.2'
 
 	implementation 'io.jsonwebtoken:jjwt-api:0.10.7'

@@ -27,6 +27,7 @@ public class Address {
     @NotBlank
     private String streetName;
     
+    @NotBlank
     private String number;
 
     private String door;

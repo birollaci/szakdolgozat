@@ -69,7 +69,7 @@ class HomeActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<ContractModel>, t: Throwable) {
-                Log.d("welcome error", t.message.toString())
+                Log.d("rentapp error", t.message.toString())
                 addOk(404)
             }
         })

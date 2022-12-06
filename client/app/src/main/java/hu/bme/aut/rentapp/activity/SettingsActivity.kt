@@ -51,7 +51,7 @@ class SettingsActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<UserModel>, t: Throwable) {
-                Log.d("welcomeerror", t.message.toString())
+                Log.d("rentapperror", t.message.toString())
             }
         })
 

@@ -72,7 +72,7 @@ class ContractActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<ContractModel>, t: Throwable) {
-                Log.d("welcome error", t.message.toString())
+                Log.d("rentapp error", t.message.toString())
                 deleteOk(404)
             }
         })
@@ -109,7 +109,7 @@ class ContractActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<ContractModel>, t: Throwable) {
-                Log.d("welcome error", t.message.toString())
+                Log.d("rentapp error", t.message.toString())
             }
         })
     }
@@ -131,7 +131,7 @@ class ContractActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<ContractModel>, t: Throwable) {
-                Log.d("welcome error", t.message.toString())
+                Log.d("rentapp error", t.message.toString())
                 deleteOk(404)
             }
         })

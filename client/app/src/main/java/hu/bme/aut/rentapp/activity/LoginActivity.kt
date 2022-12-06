@@ -80,7 +80,7 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                    Log.d("welcomeError", t.message.toString())
+                    Log.d("rentappError", t.message.toString())
                 }
 
             })

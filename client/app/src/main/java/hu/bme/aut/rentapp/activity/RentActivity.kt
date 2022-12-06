@@ -85,7 +85,7 @@ class RentActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Log.d("welcome error", t.message.toString())
+                Log.d("rentapp error", t.message.toString())
                 rentOk(404)
             }
         })

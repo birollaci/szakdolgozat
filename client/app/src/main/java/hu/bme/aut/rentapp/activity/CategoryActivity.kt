@@ -71,7 +71,7 @@ class CategoryActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<MutableList<VehicleModel>>, t: Throwable) {
-                Log.d("welcomeerror", t.message.toString())
+                Log.d("rentapperror", t.message.toString())
             }
         })
     }
@@ -96,7 +96,7 @@ class CategoryActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<MutableList<VehicleModel>>, t: Throwable) {
-                Log.d("welcomeerror", t.message.toString())
+                Log.d("rentapperror", t.message.toString())
             }
         })
     }
@@ -118,7 +118,7 @@ class CategoryActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<ContractModel>, t: Throwable) {
-                Log.d("welcome error", t.message.toString())
+                Log.d("rentapp error", t.message.toString())
                 addOk(404)
             }
         })
