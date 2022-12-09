@@ -6,7 +6,7 @@ Github link: https://github.com/birollaci/szakdolgozat
 Szerver:
 - Java programozási nyelvben van megírva.
 - A gradle projektépítő eszközt választottam.
-- Az adatbáziskezelés HyperSQL DataBase - ben történik hibernate segítségével.
+- Az adatbáziskezelés MySQL DataBase - ben történik hibernate segítségével.
 - A bejelentkezés Bearer token segítségével történik.
 - A tranzakciókezelést a szerver biztosítja.
 - A fejlesztőkörnyezetnek Visual Studio Code-t használok.
