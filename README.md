@@ -1,6 +1,8 @@
 # szakdolgozat
 Springboot szerveralkalmazás és a hozzá tartozó kliens
 
+Github link: https://github.com/birollaci/szakdolgozat
+
 Szerver:
 - Java programozási nyelvben van megírva.
 - A gradle projektépítő eszközt választottam.
