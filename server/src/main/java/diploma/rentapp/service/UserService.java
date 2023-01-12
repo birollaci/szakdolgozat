@@ -12,6 +12,7 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import diploma.rentapp.domain.Address;
 import diploma.rentapp.domain.Contract;
@@ -127,13 +128,14 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    @Transactional
     public void deleteUser(Long userId){
         if(!userRepository.existsById(userId)){
             throw new EntityNotFoundException(String.format("User with id %d does not exist in database", userId));
         }
         userRepository.deleteById(userId);
     }
-
+    
     public void deleteUserByUsername(String username){
         if(!userRepository.existsByUsername(username)){
             throw new EntityNotFoundException(String.format("User with username %s does not exist in database", username));

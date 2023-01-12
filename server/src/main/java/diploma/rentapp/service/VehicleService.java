@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import diploma.rentapp.domain.Contract;
 import diploma.rentapp.domain.ECategory;
@@ -50,6 +51,7 @@ public class VehicleService {
         return vehicleRepository.save(vehicle);
     }
 
+    @Transactional
     public void deleteVehicleById(Long id){
         Vehicle vehicle = vehicleRepository.getById(id);
         List<Contract> contracts = contractRepository.findAllByVehiclesContains(vehicle);
